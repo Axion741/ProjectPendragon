@@ -1,4 +1,6 @@
+using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using ProjectPendragonBackend;
 using ProjectPendragonBackend.Data;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,6 +14,15 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<ProjectPendragonDbContext>(options => 
     options.UseSqlServer(builder.Configuration.GetConnectionString("ProjectPendragonConnectionString")));
+
+// Auto Mapper Configurations
+var mappingConfig = new MapperConfiguration(mc =>
+{
+    mc.AddProfile(new MappingProfile());
+});
+
+IMapper mapper = mappingConfig.CreateMapper();
+builder.Services.AddSingleton(mapper);
 
 var app = builder.Build();
 
