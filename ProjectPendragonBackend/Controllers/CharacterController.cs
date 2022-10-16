@@ -1,4 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using ProjectPendragonBackend.Data;
+using ProjectPendragonBackend.Models;
 
 namespace ProjectPendragonBackend.Controllers
 {
@@ -6,20 +9,19 @@ namespace ProjectPendragonBackend.Controllers
     [Route("api/[controller]")]
     public class CharacterController : ControllerBase
     {
-        public CharacterController()
+        private readonly ProjectPendragonDbContext _projectPendragonDbContext;
+
+        public CharacterController(ProjectPendragonDbContext projectPendragonDbContext)
         {
+            _projectPendragonDbContext = projectPendragonDbContext;
         }
 
         [HttpGet]
-        public IEnumerable<Character> GetCharacters()
+        public async Task<IActionResult> GetCharacters()
         {
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-            {
-                Date = DateTime.Now.AddDays(index),
-                TemperatureC = Random.Shared.Next(-20, 55),
-                Summary = Summaries[Random.Shared.Next(Summaries.Length)]
-            })
-            .ToArray();
+            var characters = await _projectPendragonDbContext.Characters.ToListAsync();
+
+            return Ok(characters);
         }
     }
 }
