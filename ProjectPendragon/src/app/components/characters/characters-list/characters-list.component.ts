@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Character } from 'src/app/models/character.model';
 import { EGender } from 'src/app/models/e-gender';
+import { CharactersService } from 'src/app/services/characters.service';
 
 @Component({
   selector: 'app-characters-list',
@@ -9,31 +10,18 @@ import { EGender } from 'src/app/models/e-gender';
 })
 export class CharactersListComponent implements OnInit {
 
-  characters: Character[] = [
-    {
-      id: '1',
-      name: 'Byffin',
-      age: 26,
-      gender: EGender.Male
-    },
-    {
-      id: '2',
-      name: 'Huw',
-      age: 27,
-      gender: EGender.Male
-    },
-    {
-      id: '3',
-      name: 'Tydfil',
-      age: 26,
-      gender: EGender.Female
-    }
-  ];
+  characters: Character[] = [];
 
-  constructor() { }
+  constructor(private _charactersService: CharactersService) { }
 
   ngOnInit(): void {
+    this._charactersService.getAllCharacters()
+      .subscribe({
+        next: (chars) => { console.log("getAllChars", chars), this.characters = chars },
+        error: (error) => console.error("getAllChars error", error)
+      });
+      
   }
 
-
+  
 }
