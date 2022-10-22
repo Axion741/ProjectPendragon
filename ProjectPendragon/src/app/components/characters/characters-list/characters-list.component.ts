@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Character } from 'src/app/models/character.model';
 import { EGender } from 'src/app/models/e-gender';
 import { CharactersService } from 'src/app/services/characters.service';
@@ -12,16 +13,18 @@ export class CharactersListComponent implements OnInit {
 
   characters: Character[] = [];
 
-  constructor(private _charactersService: CharactersService) { }
+  constructor(private _charactersService: CharactersService, private _router: Router) { }
 
   ngOnInit(): void {
     this._charactersService.getAllCharacters()
       .subscribe({
-        next: (chars) => { console.log("getAllChars", chars), this.characters = chars },
+        next: (chars) => { this.characters = chars },
         error: (error) => console.error("getAllChars error", error)
       });
       
   }
 
-  
+  routeToAddCharacter() {
+    this._router.navigate(['/characters', 'add']);
+  }
 }

@@ -8,6 +8,8 @@ import { CharactersListComponent } from './components/characters/characters-list
 import { GenderPipe } from './pipes/gender.pipe';
 import { AddCharacterComponent } from './components/characters/add-character/add-character.component';
 import { FormsModule } from '@angular/forms';
+import { EditCharacterComponent } from './components/characters/edit-character/edit-character.component';
+import { LandingPageComponent } from './components/landing-page/landing-page.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +17,9 @@ import { FormsModule } from '@angular/forms';
     CharactersListComponent,
 
     GenderPipe,
-    AddCharacterComponent
+    AddCharacterComponent,
+    EditCharacterComponent,
+    LandingPageComponent
   ],
   imports: [
     BrowserModule, HttpClientModule, AppRoutingModule, FormsModule

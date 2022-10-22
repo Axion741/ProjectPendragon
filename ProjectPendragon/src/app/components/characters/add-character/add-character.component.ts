@@ -27,7 +27,7 @@ export class AddCharacterComponent implements OnInit {
   addCharacter() {
     this._charactersService.addCharacter(this.addCharacterRequest)
       .subscribe({
-        next: (character) => { console.log("added character", character), this._router.navigate(['characters'])},
+        next: (character) => { this._router.navigate(['characters']) },
         error: (error) => { console.log("add character error", error) }
       });
   }
