@@ -59,8 +59,22 @@ namespace ProjectPendragonBackend.Controllers
                 return NotFound();
 
             character.Name = request.Name;
-            character.Age = request.Age;
+            character.YearBorn = request.YearBorn;
             character.Gender = request.Gender;
+            character.BirthNumber = request.BirthNumber;
+            character.Home = request.Home;
+            character.Culture = request.Culture;
+            character.FathersName = request.FathersName;
+            character.Religion = request.Religion;
+            character.LiegeLord = request.LiegeLord;
+            character.Class = request.Class;
+            character.Traits = request.Traits;
+            character.Passions = request.Passions;
+            character.Attributes = request.Attributes;
+            character.DistinctiveFeatures = request.DistinctiveFeatures;
+            character.Skills = request.Skills;
+            character.Glory = request.Glory;
+            character.Wealth = request.Wealth;
 
             await _projectPendragonDbContext.SaveChangesAsync();
 
