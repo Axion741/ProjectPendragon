@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Character } from 'src/app/models/character/character.model';
 import { CharactersService } from 'src/app/services/characters.service';
+import { GlobalService } from 'src/app/services/global-service.service';
 
 @Component({
   selector: 'app-characters-list',
@@ -12,7 +13,7 @@ export class CharactersListComponent implements OnInit {
 
   characters: Character[] = [];
 
-  constructor(private _charactersService: CharactersService, private _router: Router) { }
+  constructor(private _charactersService: CharactersService, private _globalService: GlobalService, private _router: Router) { }
 
   ngOnInit(): void {
     this._charactersService.getAllCharacters()
@@ -28,6 +29,6 @@ export class CharactersListComponent implements OnInit {
   }
 
   getCharacterAge(yearBorn: number): number {
-    return 500 - yearBorn;
+    return this._globalService.currentYear - yearBorn;
   }
 }

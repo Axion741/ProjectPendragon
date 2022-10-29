@@ -10,6 +10,7 @@ import { AddCharacterComponent } from './components/characters/add-character/add
 import { FormsModule } from '@angular/forms';
 import { EditCharacterComponent } from './components/characters/edit-character/edit-character.component';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
+import { DisconnectedPageComponent } from './components/disconnected-page/disconnected-page.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { LandingPageComponent } from './components/landing-page/landing-page.com
     GenderPipe,
     AddCharacterComponent,
     EditCharacterComponent,
-    LandingPageComponent
+    LandingPageComponent,
+    DisconnectedPageComponent
   ],
   imports: [
     BrowserModule, HttpClientModule, AppRoutingModule, FormsModule

@@ -5,14 +5,18 @@ import { environment } from 'src/environments/environment';
 import { AddCharacterRequest } from '../models/requests/add-character-request.model';
 import { Character } from '../models/character/character.model';
 import { UpdateCharacterRequest } from '../models/requests/update-character-request.model';
+import { GlobalService } from './global-service.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CharactersService {
 
-  baseApiUrl: string = environment.baseApiUrl;
-  constructor(private http: HttpClient) { }
+  baseApiUrl: string;
+
+  constructor(private http: HttpClient, private _globalService: GlobalService) {
+    this.baseApiUrl = _globalService.baseApiUrl;
+   }
 
   getAllCharacters(): Observable<Character[]> {
     return this.http.get<Character[]>(this.baseApiUrl + "/api/character");

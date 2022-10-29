@@ -3,6 +3,7 @@ import { RouterModule, Routes } from "@angular/router";
 import { AddCharacterComponent } from "./components/characters/add-character/add-character.component";
 import { CharactersListComponent } from "./components/characters/characters-list/characters-list.component";
 import { EditCharacterComponent } from "./components/characters/edit-character/edit-character.component";
+import { DisconnectedPageComponent } from "./components/disconnected-page/disconnected-page.component";
 import { LandingPageComponent } from "./components/landing-page/landing-page.component";
 
 const routes: Routes = [
@@ -21,6 +22,10 @@ const routes: Routes = [
     {
         path: 'characters/edit/:id',
         component: EditCharacterComponent
+    },
+    {
+        path: 'disconnected',
+        component: DisconnectedPageComponent
     }
 ];
 

@@ -1,5 +1,6 @@
-import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { GlobalService } from './services/global-service.service';
 
 @Component({
   selector: 'app-root',
@@ -7,20 +8,32 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  // public forecasts?: WeatherForecast[];
 
-  // constructor(http: HttpClient) {
-  //   http.get<WeatherForecast[]>('/weatherforecast').subscribe(result => {
-  //     this.forecasts = result;
-  //   }, error => console.error(error));
-  // }
+  constructor(private _globalService: GlobalService, private _router: Router) { 
+    this.getCurrentYear();   
+    var interval = setInterval(() => {this.getCurrentYear()}, 10000);
+  }
 
   title = 'ProjectPendragon';
-}
 
-interface WeatherForecast {
-  date: string;
-  temperatureC: number;
-  temperatureF: number;
-  summary: string;
+  getCurrentYear() {
+    this._globalService.getCurrentYear()
+      .subscribe({
+        next: response => {
+          this._globalService.currentYear = response;
+          this._globalService.isConnectedToServer = true;
+        },
+        error: error => {
+          console.log(error);
+          this._globalService.isConnectedToServer = false;
+          if (this._router.url != "/" && this._router.url != "/disconnected") {
+            this._router.navigate(["disconnected"]);
+          }
+        }
+      })
+  }
+
+  isConnectedToServer(): boolean {
+    return this._globalService.isConnectedToServer;
+  }
 }
