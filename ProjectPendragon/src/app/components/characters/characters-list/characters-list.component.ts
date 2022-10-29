@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Character } from 'src/app/models/character.model';
-import { EGender } from 'src/app/models/e-gender';
+import { EGender } from 'src/app/models/character/e-gender';
 import { CharactersService } from 'src/app/services/characters.service';
 
 @Component({

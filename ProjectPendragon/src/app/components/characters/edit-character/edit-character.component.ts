@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { EGender } from 'src/app/models/e-gender';
+import { EGender } from 'src/app/models/character/e-gender';
 import { CharactersService } from 'src/app/services/characters.service';
 import { UpdateCharacterRequest } from 'src/app/models/update-character-request.model';
 
