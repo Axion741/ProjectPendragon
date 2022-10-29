@@ -10,7 +10,7 @@
         public ECulture Culture { get; set; }
         public string? FathersName { get; set; }
         public EReligion Religion { get; set; }
-        public Guid LiegeLord { get; set ;}
+        public Guid? LiegeLord { get; set ;}
         public EClass Class { get; set; } 
         public Traits Traits { get; set; }
         public List<Passion> Passions { get; set; }

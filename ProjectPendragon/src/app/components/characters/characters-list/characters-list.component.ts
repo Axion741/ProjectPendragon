@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Character } from 'src/app/models/character.model';
-import { EGender } from 'src/app/models/character/e-gender';
+import { Character } from 'src/app/models/character/character.model';
 import { CharactersService } from 'src/app/services/characters.service';
 
 @Component({
@@ -26,5 +25,9 @@ export class CharactersListComponent implements OnInit {
 
   routeToAddCharacter() {
     this._router.navigate(['/characters', 'add']);
+  }
+
+  getCharacterAge(yearBorn: number): number {
+    return 500 - yearBorn;
   }
 }

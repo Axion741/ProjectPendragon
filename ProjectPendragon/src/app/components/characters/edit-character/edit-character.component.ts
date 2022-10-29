@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { EGender } from 'src/app/models/character/e-gender';
 import { CharactersService } from 'src/app/services/characters.service';
-import { UpdateCharacterRequest } from 'src/app/models/update-character-request.model';
+import { UpdateCharacterRequest } from 'src/app/models/requests/update-character-request.model';
+import { Character } from 'src/app/models/character/character.model';
 
 @Component({
   selector: 'app-edit-character',
@@ -11,12 +11,7 @@ import { UpdateCharacterRequest } from 'src/app/models/update-character-request.
 })
 export class EditCharacterComponent implements OnInit {
 
-  character: UpdateCharacterRequest = {
-    id: '',
-    name: '',
-    age: 0,
-    gender: EGender.Male
-  }
+  character: Character = {} as Character;
 
   constructor(private _route: ActivatedRoute, private _router: Router, private _charactersService: CharactersService) { }
 
@@ -38,7 +33,9 @@ export class EditCharacterComponent implements OnInit {
   }
 
   updateCharacter() {
-    this._charactersService.updateCharacter(this.character.id, this.character)
+    var request = new UpdateCharacterRequest(this.character);
+
+    this._charactersService.updateCharacter(this.character.id, request)
       .subscribe({
         next: (response) => {
           this._router.navigate(['characters']);

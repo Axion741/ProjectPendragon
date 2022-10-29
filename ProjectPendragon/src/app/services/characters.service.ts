@@ -3,8 +3,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { AddCharacterRequest } from '../models/requests/add-character-request.model';
-import { Character } from '../models/character.model';
-import { UpdateCharacterRequest } from '../models/update-character-request.model';
+import { Character } from '../models/character/character.model';
+import { UpdateCharacterRequest } from '../models/requests/update-character-request.model';
 
 @Injectable({
   providedIn: 'root'

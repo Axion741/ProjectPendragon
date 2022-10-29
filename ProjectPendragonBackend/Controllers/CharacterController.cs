@@ -44,6 +44,8 @@ namespace ProjectPendragonBackend.Controllers
             var character = this._mapper.Map<Character>(request);
             character.Id = Guid.NewGuid();
 
+            character = SetCharacterIds(character, character.Id);
+
             await _projectPendragonDbContext.Characters.AddAsync(character);
             await _projectPendragonDbContext.SaveChangesAsync();
 
@@ -93,6 +95,17 @@ namespace ProjectPendragonBackend.Controllers
             await _projectPendragonDbContext.SaveChangesAsync();
 
             return Ok();
+        }
+
+        private Character SetCharacterIds(Character character, Guid id)
+        {
+            character.Attributes.Id = id;
+            character.Skills.Id = id;
+            character.Skills.Combat.Id = id;
+            character.Traits.Id = id;
+            character.Wealth.Id = id;
+
+            return character;
         }
     }
 }

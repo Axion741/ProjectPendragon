@@ -11,7 +11,7 @@
         public ECulture Culture { get; set; }
         public string? FathersName { get; set; }
         public EReligion Religion { get; set; }
-        public Guid LiegeLord { get; set ;}
+        public Guid? LiegeLord { get; set ;}
         public EClass Class { get; set; } 
         public Traits Traits { get; set; }
         public List<Passion> Passions { get; set; }
@@ -19,6 +19,6 @@
         public string? DistinctiveFeatures { get; set; }
         public Skills Skills { get; set; }
         public int Glory { get; set; }
-        public Wealth? Wealth { get; set; }
+        public Wealth Wealth { get; set; }
     }
 }

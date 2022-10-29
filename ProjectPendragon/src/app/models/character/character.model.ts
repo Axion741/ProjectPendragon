@@ -8,7 +8,7 @@ import { Attributes } from "./attributes";
 import { Skills } from "./skills";
 import { Wealth } from "./wealth";
 
-export interface Character {
+export class Character {
     id: string;
     name: string;
     yearBorn: number;
@@ -18,7 +18,7 @@ export interface Character {
     culture: ECulture;
     fathersName: string | null;
     religion: EReligion;
-    liegeLord: string;
+    liegeLord: string | null;
     class: EClass;
     traits: Traits;
     passions: Passion[];
@@ -26,5 +26,26 @@ export interface Character {
     distinctiveFeatures: string | null;
     skills: Skills;
     glory: number;
-    wealth: Wealth | null;
+    wealth: Wealth;
+
+    constructor() {
+        this.id = '';
+        this.name = '';
+        this.yearBorn = 450;
+        this.gender = EGender.Male;
+        this.birthNumber = 1;
+        this.home = '';
+        this.culture = ECulture.Cymric;
+        this.fathersName = null;
+        this.religion = EReligion.BritishChristian;
+        this.liegeLord = null;
+        this.class = EClass.Commoner;
+        this.traits = new Traits();
+        this.passions = [];
+        this.attributes = new Attributes();
+        this.distinctiveFeatures = null;
+        this.skills = new Skills();
+        this.glory = 0;
+        this.wealth = new Wealth();
+    }
 }
