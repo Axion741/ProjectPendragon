@@ -3,9 +3,9 @@ export class Passion {
     value: number;
     description: string;
 
-    constructor() {
-        this.id = crypto.randomUUID();
-        this.value = 0;
-        this.description = '';
+    constructor(value?: number, description?: string, id?: string) {
+        this.id = id ? id : crypto.randomUUID();
+        this.value = value ? value : 0;
+        this.description = description ? description : '';
     }
 }

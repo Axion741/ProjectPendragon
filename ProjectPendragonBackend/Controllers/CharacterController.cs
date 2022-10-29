@@ -30,7 +30,14 @@ namespace ProjectPendragonBackend.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetCharacterByIdAsync([FromRoute] Guid id)
         {
-            var character = await this._projectPendragonDbContext.Characters.FirstOrDefaultAsync(x => x.Id == id);
+            var character = await this._projectPendragonDbContext.Characters
+                .Include(i => i.Attributes)
+                .Include(i => i.Skills)
+                .ThenInclude(t => t.Combat)
+                .Include(i => i.Traits)
+                .Include(i => i.Wealth)
+                .Include(i => i.Passions)
+                .FirstOrDefaultAsync(x => x.Id == id);
 
             if (character == null)
                 return NotFound();
