@@ -1,8 +1,8 @@
 export enum ECulture {
-    Cymric,
-    Roman,
-    Saxon,
-    Irish,
-    Pictish,
-    Aquitainian
+    Cymric = "0",
+    Roman = "1",
+    Saxon = "2",
+    Irish = "3",
+    Pictish = "4",
+    Aquitainian = "5"
 }

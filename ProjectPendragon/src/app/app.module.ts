@@ -11,6 +11,8 @@ import { FormsModule } from '@angular/forms';
 import { EditCharacterComponent } from './components/characters/edit-character/edit-character.component';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
 import { DisconnectedPageComponent } from './components/disconnected-page/disconnected-page.component';
+import { EnumSpacingPipe } from './pipes/enum-spacing.pipe';
+import { AttributesComponent } from './components/characters/attributes/attributes.component';
 
 @NgModule({
   declarations: [
@@ -18,10 +20,13 @@ import { DisconnectedPageComponent } from './components/disconnected-page/discon
     CharactersListComponent,
 
     GenderPipe,
+    EnumSpacingPipe,
+    
     AddCharacterComponent,
     EditCharacterComponent,
     LandingPageComponent,
-    DisconnectedPageComponent
+    DisconnectedPageComponent,
+    AttributesComponent
   ],
   imports: [
     BrowserModule, HttpClientModule, AppRoutingModule, FormsModule

@@ -4,6 +4,9 @@ import { AddCharacterRequest } from 'src/app/models/requests/add-character-reque
 import { EGender } from 'src/app/models/character/e-gender';
 import { CharactersService } from 'src/app/services/characters.service';
 import { Character } from 'src/app/models/character/character.model';
+import { ECulture } from 'src/app/models/character/e-culture';
+import { EReligion } from 'src/app/models/character/e-religion';
+import { EClass } from 'src/app/models/character/e-class';
 
 @Component({
   selector: 'app-add-character',
@@ -13,6 +16,9 @@ import { Character } from 'src/app/models/character/character.model';
 export class AddCharacterComponent implements OnInit {
 
   EGender = EGender;
+  ECulture = ECulture;
+  EReligion = EReligion;
+  EClass = EClass;
 
   character: Character = new Character();
 
@@ -24,10 +30,16 @@ export class AddCharacterComponent implements OnInit {
   addCharacter() {
     var request = new AddCharacterRequest(this.character);
 
-    this._charactersService.addCharacter(request)
-      .subscribe({
-        next: (character) => { this._router.navigate(['characters']) },
-        error: (error) => { console.log("add character error", error) }
-      });
+    console.log("KB - new char", request)
+    // this._charactersService.addCharacter(request)
+    //   .subscribe({
+    //     next: (character) => { this._router.navigate(['characters']) },
+    //     error: (error) => { console.log("add character error", error) }
+    //   });
+  }
+
+  //Return 0 to stop keyvalue pipe sorting
+  returnZero(): number { 
+    return 0;
   }
 }
