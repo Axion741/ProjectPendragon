@@ -13,6 +13,7 @@ import { LandingPageComponent } from './components/landing-page/landing-page.com
 import { DisconnectedPageComponent } from './components/disconnected-page/disconnected-page.component';
 import { EnumSpacingPipe } from './pipes/enum-spacing.pipe';
 import { AttributesComponent } from './components/characters/attributes/attributes.component';
+import { NotFoundPageComponent } from './components/not-found-page/not-found-page.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { AttributesComponent } from './components/characters/attributes/attribut
     EditCharacterComponent,
     LandingPageComponent,
     DisconnectedPageComponent,
-    AttributesComponent
+    AttributesComponent,
+    NotFoundPageComponent
   ],
   imports: [
     BrowserModule, HttpClientModule, AppRoutingModule, FormsModule

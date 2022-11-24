@@ -5,6 +5,7 @@ import { CharactersListComponent } from "./components/characters/characters-list
 import { EditCharacterComponent } from "./components/characters/edit-character/edit-character.component";
 import { DisconnectedPageComponent } from "./components/disconnected-page/disconnected-page.component";
 import { LandingPageComponent } from "./components/landing-page/landing-page.component";
+import { NotFoundPageComponent } from "./components/not-found-page/not-found-page.component";
 
 const routes: Routes = [
     {
@@ -26,6 +27,10 @@ const routes: Routes = [
     {
         path: 'disconnected',
         component: DisconnectedPageComponent
+    },
+    {
+        path: '**',
+        component: NotFoundPageComponent
     }
 ];
 

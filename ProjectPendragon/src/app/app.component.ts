@@ -10,6 +10,7 @@ import { GlobalService } from './services/global-service.service';
 export class AppComponent {
 
   constructor(private _globalService: GlobalService, private _router: Router) { 
+    console.log("Initializing Heartbeat");
     this.getCurrentYear();   
     var interval = setInterval(() => {this.getCurrentYear()}, 10000);
   }
@@ -22,11 +23,14 @@ export class AppComponent {
         next: response => {
           this._globalService.currentYear = response;
           this._globalService.isConnectedToServer = true;
+
+          if (this._router.url == "/disconnected")
+            this._router.navigate(["/"]);
         },
         error: error => {
           console.log(error);
           this._globalService.isConnectedToServer = false;
-          if (this._router.url != "/" && this._router.url != "/disconnected") {
+          if (this._router.url != "/disconnected") {
             this._router.navigate(["disconnected"]);
           }
         }

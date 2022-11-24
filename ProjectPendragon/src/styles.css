@@ -7,3 +7,7 @@ body {
 .mw-550 {
     min-width: 550px;
 }
+
+h1 {
+    padding-bottom: 25px;
+}
