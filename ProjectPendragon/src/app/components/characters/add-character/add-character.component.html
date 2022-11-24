@@ -2,7 +2,7 @@
     <h1 class="mb-3">Add New Character</h1>
 
     <div class="row">
-        <div class="col-6">
+        <div class="col-6 mw-550">
             <form #form="ngForm" (ngSubmit)="addCharacter()">
                 <div class="row"> <!--Name/Glory/Class-->
                     <div class="mb-3 col">
@@ -85,7 +85,7 @@
                 <!-- Tabs -->
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                     <li class="nav-item">
-                      <button class="nav-link active" id="attr-tab" data-bs-toggle="tab" data-bs-target="#attr-tab-pane" type="button" role="tab" aria-controls="attr-tab-pane" aria-selected="true">Attribute</button>
+                      <button class="nav-link active" id="attr-tab" data-bs-toggle="tab" data-bs-target="#attr-tab-pane" type="button" role="tab" aria-controls="attr-tab-pane" aria-selected="true">Attributes</button>
                     </li>
                     <li class="nav-item">
                       <button class="nav-link" id="traits-tab" data-bs-toggle="tab" data-bs-target="#traits-tab-pane" type="button" role="tab" aria-controls="traits-tab-pane" aria-selected="false">Traits</button>
@@ -102,7 +102,9 @@
                   </ul>
                   <div class="tab-content" id="myTabContent">
                     <!-- Attributes Tab Content -->
-                    <div class="tab-pane fade show active" id="attr-tab-pane" role="tabpanel" aria-labelledby="attr-tab" tabindex="0"><app-attributes></app-attributes></div>
+                    <div class="tab-pane fade show active" id="attr-tab-pane" role="tabpanel" aria-labelledby="attr-tab" tabindex="0">
+                        <attributes [attributes]="this.character.attributes" (attributesChange)="onAttributesChange($event)"></attributes>
+                    </div>
                     <!-- Traits Tab Content -->
                     <div class="tab-pane fade" id="traits-tab-pane" role="tabpanel" aria-labelledby="traits-tab" tabindex="0">Traits</div>
                     <!-- Passions Tab Content -->

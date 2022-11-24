@@ -7,6 +7,7 @@ import { Character } from 'src/app/models/character/character.model';
 import { ECulture } from 'src/app/models/character/e-culture';
 import { EReligion } from 'src/app/models/character/e-religion';
 import { EClass } from 'src/app/models/character/e-class';
+import { Attributes } from 'src/app/models/character/attributes';
 
 @Component({
   selector: 'app-add-character',
@@ -41,5 +42,9 @@ export class AddCharacterComponent implements OnInit {
   //Return 0 to stop keyvalue pipe sorting
   returnZero(): number { 
     return 0;
+  }
+
+  onAttributesChange(attributes: Attributes): void {
+    this.character.attributes = attributes;
   }
 }
