@@ -1,0 +1,147 @@
+<div class="container my-5">
+    <h3 class="mb-3">Traits</h3>
+
+    <div class="row mt-20">
+        <label for="chastelustful" class="form-label col-1">Lustful</label>
+        <div class="col"></div>
+        <label for="chastelustful" class="form-label col-1  align-right">Chaste</label>
+    </div>
+    <div class="row">
+        <div class="col-1">{{traits.getTrait("lustful")}}</div>
+        <input type="range" class="form-range col" id="chastelustful" min="0" max="20" [(ngModel)]="traits.chaste" (ngModelChange)="emitTraitsChange()" name="chastelustful">
+        <div class="col-1">{{traits.getTrait("chaste")}}</div>
+    </div>
+
+    <div class="row mt-20">
+        <label for="energeticlazy" class="form-label col-1">Lazy</label>
+        <div class="col"></div>
+        <label for="energeticlazy" class="form-label col-1 ">Energetic</label>
+    </div>
+    <div class="row">
+        <div class="col-1">{{traits.getTrait("lazy")}}</div>
+        <input type="range" class="form-range col" id="energeticlazy" min="0" max="20" [(ngModel)]="traits.energetic" (ngModelChange)="emitTraitsChange()" name="energeticlazy">
+        <div class="col-1">{{traits.getTrait("energetic")}}</div>
+    </div>
+
+    <div class="row mt-20">
+        <label for="forgivingvengeful" class="form-label col-1">Vengeful</label>
+        <div class="col"></div>
+        <label for="forgivingvengeful" class="form-label col-1 ">Forgiving</label>
+    </div>
+    <div class="row">
+        <div class="col-1">{{traits.getTrait("vengeful")}}</div>
+        <input type="range" class="form-range col" id="forgivingvengeful" min="0" max="20" [(ngModel)]="traits.forgiving" (ngModelChange)="emitTraitsChange()" name="forgivingvengeful">
+        <div class="col-1">{{traits.getTrait("forgiving")}}</div>
+    </div>
+
+    <div class="row mt-20">
+        <label for="generousselfish" class="form-label col-1">Selfish</label>
+        <div class="col"></div>
+        <label for="generousselfish" class="form-label col-1 ">Generous</label>
+    </div>
+    <div class="row">
+        <div class="col-1">{{traits.getTrait("selfish")}}</div>
+        <input type="range" class="form-range col" id="generousselfish" min="0" max="20" [(ngModel)]="traits.generous" (ngModelChange)="emitTraitsChange()" name="generousselfish">
+        <div class="col-1">{{traits.getTrait("generous")}}</div>
+    </div>
+
+    <div class="row mt-20">
+        <label for="honestdeceitful" class="form-label col-1">Deceitful</label>
+        <div class="col"></div>
+        <label for="honestdeceitful" class="form-label col-1 ">Honest</label>
+    </div>
+    <div class="row">
+        <div class="col-1">{{traits.getTrait("deceitful")}}</div>
+        <input type="range" class="form-range col" id="honestdeceitful" min="0" max="20" [(ngModel)]="traits.honest" (ngModelChange)="emitTraitsChange()" name="honestdeceitful">
+        <div class="col-1">{{traits.getTrait("honest")}}</div>
+    </div>
+
+    <div class="row mt-20">
+        <label for="justarbitrary" class="form-label col-1">Arbitrary</label>
+        <div class="col"></div>
+        <label for="justarbitrary" class="form-label col-1 ">Just</label>
+    </div>
+    <div class="row">
+        <div class="col-1">{{traits.getTrait("arbitrary")}}</div>
+        <input type="range" class="form-range col" id="justarbitrary" min="0" max="20" [(ngModel)]="traits.just" (ngModelChange)="emitTraitsChange()" name="justarbitrary">
+        <div class="col-1">{{traits.getTrait("just")}}</div>
+    </div>
+
+    <div class="row mt-20">
+        <label for="mercifulcruel" class="form-label col-1">Cruel</label>
+        <div class="col"></div>
+        <label for="mercifulcruel" class="form-label col-1 ">Merciful</label>
+    </div>
+    <div class="row">
+        <div class="col-1">{{traits.getTrait("cruel")}}</div>
+        <input type="range" class="form-range col" id="mercifulcruel" min="0" max="20" [(ngModel)]="traits.merciful" (ngModelChange)="emitTraitsChange()" name="mercifulcruel">
+        <div class="col-1">{{traits.getTrait("merciful")}}</div>
+    </div>
+
+    <div class="row mt-20">
+        <label for="modestproud" class="form-label col-1">Proud</label>
+        <div class="col"></div>
+        <label for="modestproud" class="form-label col-1 ">Modest</label>
+    </div>
+    <div class="row">
+        <div class="col-1">{{traits.getTrait("proud")}}</div>
+        <input type="range" class="form-range col" id="modestproud" min="0" max="20" [(ngModel)]="traits.modest" (ngModelChange)="emitTraitsChange()" name="modestproud">
+        <div class="col-1">{{traits.getTrait("modest")}}</div>
+    </div>
+
+    <div class="row mt-20">
+        <label for="piousworldly" class="form-label col-1">Worldly</label>
+        <div class="col"></div>
+        <label for="piousworldly" class="form-label col-1 ">Pious</label>
+    </div>
+    <div class="row">
+        <div class="col-1">{{traits.getTrait("worldly")}}</div>
+        <input type="range" class="form-range col" id="piousworldly" min="0" max="20" [(ngModel)]="traits.pious" (ngModelChange)="emitTraitsChange()" name="piousworldly">
+        <div class="col-1">{{traits.getTrait("pious")}}</div>
+    </div>
+
+    <div class="row mt-20">
+        <label for="prudentreckless" class="form-label col-1">Reckless</label>
+        <div class="col"></div>
+        <label for="prudentreckless" class="form-label col-1 ">Prudent</label>
+    </div>
+    <div class="row">
+        <div class="col-1">{{traits.getTrait("reckless")}}</div>
+        <input type="range" class="form-range col" id="prudentreckless" min="0" max="20" [(ngModel)]="traits.prudent" (ngModelChange)="emitTraitsChange()" name="prudentreckless">
+        <div class="col-1">{{traits.getTrait("prudent")}}</div>
+    </div>
+
+    <div class="row mt-20">
+        <label for="temperateindulgent" class="form-label col-1">Indulgent</label>
+        <div class="col"></div>
+        <label for="temperateindulgent" class="form-label col-1 ">Temperate</label>
+    </div>
+    <div class="row">
+        <div class="col-1">{{traits.getTrait("indulgent")}}</div>
+        <input type="range" class="form-range col" id="temperateindulgent" min="0" max="20" [(ngModel)]="traits.temperate" (ngModelChange)="emitTraitsChange()" name="temperateindulgent">
+        <div class="col-1">{{traits.getTrait("temperate")}}</div>
+    </div>
+
+    <div class="row mt-20">
+        <label for="trustingsuspicious" class="form-label col-1">Suspicious</label>
+        <div class="col"></div>
+        <label for="trustingsuspicious" class="form-label col-1 ">Trusting</label>
+    </div>
+    <div class="row">
+        <div class="col-1">{{traits.getTrait("suspicious")}}</div>
+        <input type="range" class="form-range col" id="trustingsuspicious" min="0" max="20" [(ngModel)]="traits.trusting" (ngModelChange)="emitTraitsChange()" name="trustingsuspicious">
+        <div class="col-1">{{traits.getTrait("trusting")}}</div>
+    </div>
+
+    <div class="row mt-20">
+        <label for="valorouscowardly" class="form-label col-1">Cowardly</label>
+        <div class="col"></div>
+        <label for="valorouscowardly" class="form-label col-1 ">Valorous</label>
+    </div>
+    <div class="row">
+        <div class="col-1">{{traits.getTrait("cowardly")}}</div>
+        <input type="range" class="form-range col" id="valorouscowardly" min="0" max="20" [(ngModel)]="traits.valorous" (ngModelChange)="emitTraitsChange()" name="valorouscowardly">
+        <div class="col-1">{{traits.getTrait("valorous")}}</div>
+    </div>
+    
+</div>

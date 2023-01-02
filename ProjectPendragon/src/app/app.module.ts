@@ -14,6 +14,7 @@ import { DisconnectedPageComponent } from './components/disconnected-page/discon
 import { EnumSpacingPipe } from './pipes/enum-spacing.pipe';
 import { AttributesComponent } from './components/characters/attributes/attributes.component';
 import { NotFoundPageComponent } from './components/not-found-page/not-found-page.component';
+import { TraitsComponent } from './components/characters/traits/traits.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { NotFoundPageComponent } from './components/not-found-page/not-found-pag
     LandingPageComponent,
     DisconnectedPageComponent,
     AttributesComponent,
-    NotFoundPageComponent
+    NotFoundPageComponent,
+    TraitsComponent
   ],
   imports: [
     BrowserModule, HttpClientModule, AppRoutingModule, FormsModule

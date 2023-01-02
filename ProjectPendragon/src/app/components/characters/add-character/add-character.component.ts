@@ -8,6 +8,7 @@ import { ECulture } from 'src/app/models/character/e-culture';
 import { EReligion } from 'src/app/models/character/e-religion';
 import { EClass } from 'src/app/models/character/e-class';
 import { Attributes } from 'src/app/models/character/attributes';
+import { Traits } from 'src/app/models/character/traits';
 
 @Component({
   selector: 'app-add-character',
@@ -46,5 +47,9 @@ export class AddCharacterComponent implements OnInit {
 
   onAttributesChange(attributes: Attributes): void {
     this.character.attributes = attributes;
+  }
+
+  onTraitsChange(traits: Traits): void {
+    this.character.traits = traits;
   }
 }
