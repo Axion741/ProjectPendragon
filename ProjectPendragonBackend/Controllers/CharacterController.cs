@@ -112,6 +112,11 @@ namespace ProjectPendragonBackend.Controllers
             character.Traits.Id = id;
             character.Wealth.Id = id;
 
+            foreach (var passion in character.Passions)
+            {
+                passion.Id = id;
+            }
+
             return character;
         }
     }

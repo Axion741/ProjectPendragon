@@ -1,0 +1,18 @@
+<div class="container my-5">
+    <div class="d-flex flex-row justify-content-between">
+        <h3 class="mb-3 pr-20">Passions</h3>
+        <button type="button" class="btn btn-primary add-btn" (click)="addPassion()">+</button>
+    </div>
+
+    <div class="row" *ngFor="let passion of passions">
+        <div class="mb-3 col">
+            <label class="form-label">Description</label>
+            <input type="text" class="form-control" id="name" [value]="passion.description" (change)="updatePassionDescription($event, passion.id)" name="description">
+        </div>
+        <div class="mb-3 col-2">
+            <label class="form-label">Value</label>
+            <input type="number" class="form-control" id="glory" [value]="passion.value" (change)="updatePassionValue($event, passion.id)" name="value">
+        </div>
+        <button type="button" class="btn btn-danger remove-btn col-1" (click)="removePassion(passion.id)">x</button>
+    </div>
+</div>

@@ -110,7 +110,9 @@
                         <traits [traits]="this.character.traits" (traitsChange)="onTraitsChange($event)"></traits>
                     </div>
                     <!-- Passions Tab Content -->
-                    <div class="tab-pane fade" id="passions-tab-pane" role="tabpanel" aria-labelledby="passions-tab" tabindex="0">Passions</div>
+                    <div class="tab-pane fade" id="passions-tab-pane" role="tabpanel" aria-labelledby="passions-tab" tabindex="0">
+                        <passions [passions]="this.character.passions" (passionsChange)="onPassionsChange($event)"></passions>
+                    </div>
                     <!-- Skills Tab Content -->
                     <div class="tab-pane fade" id="skills-tab-pane" role="tabpanel" aria-labelledby="skills-tab" tabindex="0">Skills</div>
                     <!-- Misc Tab Content -->
