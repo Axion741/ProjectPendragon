@@ -2,9 +2,8 @@
 {
     public class Skills
     {
-        public Guid SkillsId { get; set; }
+        public Guid Id { get; set; }
         public Guid CharacterId { get; set; }
-        public Character Character { get; set; }
         public List<CoreSkill> Core { get; set; }
         public List<CombatSkill> Combat { get; set; }
 
@@ -18,12 +17,12 @@
 
             foreach (var skill in this.Core)
             {
-                skill.SkillsId = this.SkillsId;
+                skill.SkillsId = this.Id;
             }
 
             foreach (var skill in this.Combat)
             {
-                skill.SkillsId = this.SkillsId;
+                skill.SkillsId = this.Id;
             }
         }
     }

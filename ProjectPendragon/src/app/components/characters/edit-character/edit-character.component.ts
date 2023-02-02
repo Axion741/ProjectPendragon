@@ -25,6 +25,7 @@ export class EditCharacterComponent implements OnInit {
             .subscribe({
               next: (response) => {
                 this.character = response;
+                console.log(this.character)
               }
             })
         }

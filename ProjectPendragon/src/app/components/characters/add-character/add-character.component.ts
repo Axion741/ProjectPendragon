@@ -35,11 +35,11 @@ export class AddCharacterComponent implements OnInit {
     var request = new AddCharacterRequest(this.character);
 
     console.log("KB - new char", request)
-    // this._charactersService.addCharacter(request)
-    //   .subscribe({
-    //     next: (character) => { this._router.navigate(['characters']) },
-    //     error: (error) => { console.log("add character error", error) }
-    //   });
+    this._charactersService.addCharacter(request)
+      .subscribe({
+        next: (character) => { this._router.navigate(['characters']) },
+        error: (error) => { console.log("add character error", error) }
+      });
   }
 
   //Return 0 to stop keyvalue pipe sorting

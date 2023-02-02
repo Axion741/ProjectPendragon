@@ -4,14 +4,14 @@
     {
         public string Name { get; set; }
         public int YearBorn { get; set; }
-        public EGender Gender { get; set; }
+        public int Gender { get; set; }
         public int BirthNumber { get; set; }
         public string Home { get; set; }
-        public ECulture Culture { get; set; }
+        public int Culture { get; set; }
         public string? FathersName { get; set; }
-        public EReligion Religion { get; set; }
+        public int Religion { get; set; }
         public Guid? LiegeLord { get; set ;}
-        public EClass Class { get; set; } 
+        public int Class { get; set; } 
         public Traits Traits { get; set; }
         public List<Passion> Passions { get; set; }
         public Attributes Attributes { get; set; }

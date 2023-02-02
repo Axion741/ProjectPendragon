@@ -37,7 +37,7 @@ export class AddCharacterRequest {
         this.culture = character.culture;
         this.fathersName = character.fathersName;
         this.religion = character.religion;
-        this.liegeLord = character.liegeLord;
+        this.liegeLord = character.liegeLord == "" ? null : character.liegeLord;
         this.class = character.class;
         this.traits = character.traits;
         this.passions = character.passions;

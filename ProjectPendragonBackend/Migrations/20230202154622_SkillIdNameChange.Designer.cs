@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProjectPendragonBackend.Data;
 
@@ -11,9 +12,10 @@ using ProjectPendragonBackend.Data;
 namespace ProjectPendragonBackend.Migrations
 {
     [DbContext(typeof(ProjectPendragonDbContext))]
-    partial class ProjectPendragonDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230202154622_SkillIdNameChange")]
+    partial class SkillIdNameChange
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -56,7 +58,7 @@ namespace ProjectPendragonBackend.Migrations
 
             modelBuilder.Entity("ProjectPendragonBackend.Models.Character", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<Guid>("CharacterId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -98,7 +100,7 @@ namespace ProjectPendragonBackend.Migrations
                     b.Property<int>("YearBorn")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.HasKey("CharacterId");
 
                     b.ToTable("Characters");
                 });
@@ -197,14 +199,14 @@ namespace ProjectPendragonBackend.Migrations
 
             modelBuilder.Entity("ProjectPendragonBackend.Models.Skills", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<Guid>("SkillsId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("CharacterId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("Id");
+                    b.HasKey("SkillsId");
 
                     b.HasIndex("CharacterId")
                         .IsUnique();

@@ -33,10 +33,13 @@ namespace ProjectPendragonBackend.Controllers
             var character = await this._projectPendragonDbContext.Characters
                 .Include(i => i.Attributes)
                 .Include(i => i.Skills)
+                .ThenInclude(t => t.Core)
+                .Include(i => i.Skills)
+                .ThenInclude(t => t.Combat)
                 .Include(i => i.Traits)
                 .Include(i => i.Wealth)
                 .Include(i => i.Passions)
-                .FirstOrDefaultAsync(x => x.CharacterId == id);
+                .FirstOrDefaultAsync(x => x.Id == id);
 
             if (character == null)
                 return NotFound();
@@ -48,9 +51,9 @@ namespace ProjectPendragonBackend.Controllers
         public async Task<IActionResult> AddCharacterAsync(CreateCharacterRequest request)
         {
             var character = this._mapper.Map<Character>(request);
-            character.CharacterId = Guid.NewGuid();
+            character.Id = Guid.NewGuid();
 
-            character = SetCharacterIds(character, character.CharacterId);
+            character = SetCharacterIds(character, character.Id);
 
             await _projectPendragonDbContext.Characters.AddAsync(character);
             await _projectPendragonDbContext.SaveChangesAsync();
