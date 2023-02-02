@@ -12,22 +12,22 @@
                     </div>
                     <div class="mb-3 col">
                         <label class="form-label">STR</label>
-                        <input type="number" class="form-control" id="str" [(ngModel)]="attributes.str" name="str">
+                        <input type="number" class="form-control" id="str" [(ngModel)]="attributes.str" (ngModelChange)="emitAttributeChange()" name="str">
                     </div>
                     <div class="mb-3 col">
                         <label class="form-label">DEX</label>
-                        <input type="number" class="form-control" id="dex" [(ngModel)]="attributes.dex" name="dex">
+                        <input type="number" class="form-control" id="dex" [(ngModel)]="attributes.dex" (ngModelChange)="emitAttributeChange()" name="dex">
                     </div>
                 </div>
                 <div class="row"> <!--CON/APP-->
                     <div class="mb-3 col">
                         <label class="form-label">CON</label>
-                        <input type="number" class="form-control" id="con" [(ngModel)]="attributes.con" name="con">
+                        <input type="number" class="form-control" id="con" [(ngModel)]="attributes.con" (ngModelChange)="emitAttributeChange()" name="con">
                         <small class="form-text text-muted">Major Wound</small>
                     </div>
                     <div class="mb-3 col">
                         <label class="form-label">APP</label>
-                        <input type="number" class="form-control" id="app" [(ngModel)]="attributes.app" name="app">
+                        <input type="number" class="form-control" id="app" [(ngModel)]="attributes.app" (ngModelChange)="emitAttributeChange()" name="app">
                     </div>
                 </div>
             </form>

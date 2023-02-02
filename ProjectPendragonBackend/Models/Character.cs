@@ -2,7 +2,7 @@
 {
     public class Character
     {
-        public Guid Id { get; set; }
+        public Guid CharacterId { get; set; }
         public string Name { get; set; }
         public int YearBorn { get; set; }
         public EGender Gender { get; set; }

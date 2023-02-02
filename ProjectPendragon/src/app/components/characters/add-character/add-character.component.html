@@ -114,7 +114,9 @@
                         <passions [passions]="this.character.passions" (passionsChange)="onPassionsChange($event)"></passions>
                     </div>
                     <!-- Skills Tab Content -->
-                    <div class="tab-pane fade" id="skills-tab-pane" role="tabpanel" aria-labelledby="skills-tab" tabindex="0">Skills</div>
+                    <div class="tab-pane fade" id="skills-tab-pane" role="tabpanel" aria-labelledby="skills-tab" tabindex="0">
+                        <skills [skills]="this.character.skills" (skillsChange)="onSkillsChange($event)"></skills>
+                    </div>
                     <!-- Misc Tab Content -->
                     <div class="tab-pane fade" id="misc-tab-pane" role="tabpanel" aria-labelledby="misc-tab" tabindex="0">
                         <div class="row"> <!--BirthNo/FathersName/Dist.Features-->

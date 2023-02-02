@@ -10,6 +10,7 @@ import { EClass } from 'src/app/models/character/e-class';
 import { Attributes } from 'src/app/models/character/attributes';
 import { Traits } from 'src/app/models/character/traits';
 import { Passion } from 'src/app/models/character/passion';
+import { Skills } from 'src/app/models/character/skills';
 
 @Component({
   selector: 'app-add-character',
@@ -56,5 +57,9 @@ export class AddCharacterComponent implements OnInit {
 
   onPassionsChange(passions: Passion[]): void {
     this.character.passions = passions;
+  }
+
+  onSkillsChange(skills: Skills): void {
+    this.character.skills = skills;
   }
 }

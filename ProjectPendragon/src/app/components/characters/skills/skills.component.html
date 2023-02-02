@@ -1,0 +1,26 @@
+<div class="container my-5">
+    <div class="row">
+        <!-- Main Skills -->
+        <div class="col">
+            <h3 class="mb-3">Core Skills</h3>
+
+            <form #form="ngForm">
+                <div class="mb-3 col" *ngFor="let skill of skills.core">
+                    <label class="form-label">{{skill.name}}</label>
+                    <input type="number" class="form-control" id="skill.name" [(ngModel)]="skill.value" (ngModelChange)="emitSkillsChange()" name="skill.name">
+                </div>
+            </form>
+        </div>
+        <!-- Combat Skills -->
+        <div class="col">
+            <h3 class="mb-3">Combat Skills</h3>
+
+            <form #form="ngForm">
+                <div class="mb-3 col" *ngFor="let skill of skills.combat">
+                    <label class="form-label">{{skill.name}}</label>
+                    <input type="number" class="form-control" id="skill.name" [(ngModel)]="skill.value" (ngModelChange)="emitSkillsChange()" name="skill.name">
+                </div>
+            </form>
+        </div>  
+    </div>
+</div>

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProjectPendragonBackend.Data;
 
@@ -11,9 +12,10 @@ using ProjectPendragonBackend.Data;
 namespace ProjectPendragonBackend.Migrations
 {
     [DbContext(typeof(ProjectPendragonDbContext))]
-    partial class ProjectPendragonDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230201200514_SkillsRevamp")]
+    partial class SkillsRevamp
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

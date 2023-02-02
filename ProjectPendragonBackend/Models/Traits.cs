@@ -3,6 +3,8 @@
     public class Traits
     {
         public Guid Id { get; set; }
+        public Guid CharacterId { get; set; }
+        public Character Character { get; set; }
         public int Chaste { get; set; }
         public int Energetic { get; set; }
         public int Forgiving { get; set; }
