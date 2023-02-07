@@ -64,10 +64,13 @@
                     </div>
                     <div class="mb-3 col">
                         <label class="form-label">Liegelord</label>
-                        <input type="text" class="form-control" id="liegeLord" [(ngModel)]="character.liegeLord" name="liegeLord">
+                        <select class="form-select" [(ngModel)]="character.liegeLord" name="liegeLordSelect">
+                            <option [ngValue]="null">None</option>
+                            <option *ngFor="let char of allCharacterList" value="{{char.id}}">{{ char.name }}</option>
+                        </select>
                     </div>
                 </div>
-                <div class="row"> <!--Home/Liegelord-->
+                <div class="row"> <!--Wealth-->
                     <label>Wealth</label>
                     <div class="mb-3 col">
                         <label class="form-label">Libra</label>

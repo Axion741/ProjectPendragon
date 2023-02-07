@@ -25,10 +25,12 @@ export class AddCharacterComponent implements OnInit {
   EClass = EClass;
 
   character: Character = new Character();
+  allCharacterList: Character[] = [];
 
   constructor(private _charactersService: CharactersService, private _router: Router) { }
 
   ngOnInit(): void {
+    this.allCharacterList = this._charactersService.allCharacterList;
   }
 
   addCharacter() {

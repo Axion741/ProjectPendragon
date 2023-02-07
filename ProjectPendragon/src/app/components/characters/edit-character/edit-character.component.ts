@@ -25,10 +25,13 @@ export class EditCharacterComponent implements OnInit {
   EClass = EClass;
   
   character: Character = {} as Character;
+  allCharacterList: Character[] = [];
+
   constructor(private _route: ActivatedRoute, private _router: Router, private _charactersService: CharactersService) { }
 
   ngOnInit(): void {    
     this.character = this._charactersService.selectedCharacter;
+    this.allCharacterList = this._charactersService.allCharacterList;
   }
 
   updateCharacter() {
