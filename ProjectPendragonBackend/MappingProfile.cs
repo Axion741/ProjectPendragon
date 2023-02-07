@@ -8,6 +8,7 @@ namespace ProjectPendragonBackend
         public MappingProfile()
         {
             CreateMap<CreateCharacterRequest, Character>();
+            CreateMap<UpdateCharacterRequest, Character>();
         }
     }
 }

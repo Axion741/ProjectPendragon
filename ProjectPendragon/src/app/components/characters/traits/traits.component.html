@@ -7,9 +7,9 @@
         <label for="chastelustful" class="form-label col-1  align-right">Chaste</label>
     </div>
     <div class="row">
-        <div class="col-1">{{traits.getTrait("lustful")}}</div>
+        <div class="col-1">{{_traitsService.getTrait("lustful", traits)}}</div>
         <input type="range" class="form-range col" id="chastelustful" min="0" max="20" [(ngModel)]="traits.chaste" (ngModelChange)="emitTraitsChange()" name="chastelustful">
-        <div class="col-1">{{traits.getTrait("chaste")}}</div>
+        <div class="col-1">{{_traitsService.getTrait("chaste", traits)}}</div>
     </div>
 
     <div class="row mt-20">
@@ -18,9 +18,9 @@
         <label for="energeticlazy" class="form-label col-1 ">Energetic</label>
     </div>
     <div class="row">
-        <div class="col-1">{{traits.getTrait("lazy")}}</div>
+        <div class="col-1">{{_traitsService.getTrait("lazy", traits)}}</div>
         <input type="range" class="form-range col" id="energeticlazy" min="0" max="20" [(ngModel)]="traits.energetic" (ngModelChange)="emitTraitsChange()" name="energeticlazy">
-        <div class="col-1">{{traits.getTrait("energetic")}}</div>
+        <div class="col-1">{{_traitsService.getTrait("energetic", traits)}}</div>
     </div>
 
     <div class="row mt-20">
@@ -29,9 +29,9 @@
         <label for="forgivingvengeful" class="form-label col-1 ">Forgiving</label>
     </div>
     <div class="row">
-        <div class="col-1">{{traits.getTrait("vengeful")}}</div>
+        <div class="col-1">{{_traitsService.getTrait("vengeful", traits)}}</div>
         <input type="range" class="form-range col" id="forgivingvengeful" min="0" max="20" [(ngModel)]="traits.forgiving" (ngModelChange)="emitTraitsChange()" name="forgivingvengeful">
-        <div class="col-1">{{traits.getTrait("forgiving")}}</div>
+        <div class="col-1">{{_traitsService.getTrait("forgiving", traits)}}</div>
     </div>
 
     <div class="row mt-20">
@@ -40,9 +40,9 @@
         <label for="generousselfish" class="form-label col-1 ">Generous</label>
     </div>
     <div class="row">
-        <div class="col-1">{{traits.getTrait("selfish")}}</div>
+        <div class="col-1">{{_traitsService.getTrait("selfish", traits)}}</div>
         <input type="range" class="form-range col" id="generousselfish" min="0" max="20" [(ngModel)]="traits.generous" (ngModelChange)="emitTraitsChange()" name="generousselfish">
-        <div class="col-1">{{traits.getTrait("generous")}}</div>
+        <div class="col-1">{{_traitsService.getTrait("generous", traits)}}</div>
     </div>
 
     <div class="row mt-20">
@@ -51,9 +51,9 @@
         <label for="honestdeceitful" class="form-label col-1 ">Honest</label>
     </div>
     <div class="row">
-        <div class="col-1">{{traits.getTrait("deceitful")}}</div>
+        <div class="col-1">{{_traitsService.getTrait("deceitful", traits)}}</div>
         <input type="range" class="form-range col" id="honestdeceitful" min="0" max="20" [(ngModel)]="traits.honest" (ngModelChange)="emitTraitsChange()" name="honestdeceitful">
-        <div class="col-1">{{traits.getTrait("honest")}}</div>
+        <div class="col-1">{{_traitsService.getTrait("honest", traits)}}</div>
     </div>
 
     <div class="row mt-20">
@@ -62,9 +62,9 @@
         <label for="justarbitrary" class="form-label col-1 ">Just</label>
     </div>
     <div class="row">
-        <div class="col-1">{{traits.getTrait("arbitrary")}}</div>
+        <div class="col-1">{{_traitsService.getTrait("arbitrary", traits)}}</div>
         <input type="range" class="form-range col" id="justarbitrary" min="0" max="20" [(ngModel)]="traits.just" (ngModelChange)="emitTraitsChange()" name="justarbitrary">
-        <div class="col-1">{{traits.getTrait("just")}}</div>
+        <div class="col-1">{{_traitsService.getTrait("just", traits)}}</div>
     </div>
 
     <div class="row mt-20">
@@ -73,9 +73,9 @@
         <label for="mercifulcruel" class="form-label col-1 ">Merciful</label>
     </div>
     <div class="row">
-        <div class="col-1">{{traits.getTrait("cruel")}}</div>
+        <div class="col-1">{{_traitsService.getTrait("cruel", traits)}}</div>
         <input type="range" class="form-range col" id="mercifulcruel" min="0" max="20" [(ngModel)]="traits.merciful" (ngModelChange)="emitTraitsChange()" name="mercifulcruel">
-        <div class="col-1">{{traits.getTrait("merciful")}}</div>
+        <div class="col-1">{{_traitsService.getTrait("merciful", traits)}}</div>
     </div>
 
     <div class="row mt-20">
@@ -84,9 +84,9 @@
         <label for="modestproud" class="form-label col-1 ">Modest</label>
     </div>
     <div class="row">
-        <div class="col-1">{{traits.getTrait("proud")}}</div>
+        <div class="col-1">{{_traitsService.getTrait("proud", traits)}}</div>
         <input type="range" class="form-range col" id="modestproud" min="0" max="20" [(ngModel)]="traits.modest" (ngModelChange)="emitTraitsChange()" name="modestproud">
-        <div class="col-1">{{traits.getTrait("modest")}}</div>
+        <div class="col-1">{{_traitsService.getTrait("modest", traits)}}</div>
     </div>
 
     <div class="row mt-20">
@@ -95,9 +95,9 @@
         <label for="piousworldly" class="form-label col-1 ">Pious</label>
     </div>
     <div class="row">
-        <div class="col-1">{{traits.getTrait("worldly")}}</div>
+        <div class="col-1">{{_traitsService.getTrait("worldly", traits)}}</div>
         <input type="range" class="form-range col" id="piousworldly" min="0" max="20" [(ngModel)]="traits.pious" (ngModelChange)="emitTraitsChange()" name="piousworldly">
-        <div class="col-1">{{traits.getTrait("pious")}}</div>
+        <div class="col-1">{{_traitsService.getTrait("pious", traits)}}</div>
     </div>
 
     <div class="row mt-20">
@@ -106,9 +106,9 @@
         <label for="prudentreckless" class="form-label col-1 ">Prudent</label>
     </div>
     <div class="row">
-        <div class="col-1">{{traits.getTrait("reckless")}}</div>
+        <div class="col-1">{{_traitsService.getTrait("reckless", traits)}}</div>
         <input type="range" class="form-range col" id="prudentreckless" min="0" max="20" [(ngModel)]="traits.prudent" (ngModelChange)="emitTraitsChange()" name="prudentreckless">
-        <div class="col-1">{{traits.getTrait("prudent")}}</div>
+        <div class="col-1">{{_traitsService.getTrait("prudent", traits)}}</div>
     </div>
 
     <div class="row mt-20">
@@ -117,9 +117,9 @@
         <label for="temperateindulgent" class="form-label col-1 ">Temperate</label>
     </div>
     <div class="row">
-        <div class="col-1">{{traits.getTrait("indulgent")}}</div>
+        <div class="col-1">{{_traitsService.getTrait("indulgent", traits)}}</div>
         <input type="range" class="form-range col" id="temperateindulgent" min="0" max="20" [(ngModel)]="traits.temperate" (ngModelChange)="emitTraitsChange()" name="temperateindulgent">
-        <div class="col-1">{{traits.getTrait("temperate")}}</div>
+        <div class="col-1">{{_traitsService.getTrait("temperate", traits)}}</div>
     </div>
 
     <div class="row mt-20">
@@ -128,9 +128,9 @@
         <label for="trustingsuspicious" class="form-label col-1 ">Trusting</label>
     </div>
     <div class="row">
-        <div class="col-1">{{traits.getTrait("suspicious")}}</div>
+        <div class="col-1">{{_traitsService.getTrait("suspicious", traits)}}</div>
         <input type="range" class="form-range col" id="trustingsuspicious" min="0" max="20" [(ngModel)]="traits.trusting" (ngModelChange)="emitTraitsChange()" name="trustingsuspicious">
-        <div class="col-1">{{traits.getTrait("trusting")}}</div>
+        <div class="col-1">{{_traitsService.getTrait("trusting", traits)}}</div>
     </div>
 
     <div class="row mt-20">
@@ -139,9 +139,9 @@
         <label for="valorouscowardly" class="form-label col-1 ">Valorous</label>
     </div>
     <div class="row">
-        <div class="col-1">{{traits.getTrait("cowardly")}}</div>
+        <div class="col-1">{{_traitsService.getTrait("cowardly", traits)}}</div>
         <input type="range" class="form-range col" id="valorouscowardly" min="0" max="20" [(ngModel)]="traits.valorous" (ngModelChange)="emitTraitsChange()" name="valorouscowardly">
-        <div class="col-1">{{traits.getTrait("valorous")}}</div>
+        <div class="col-1">{{_traitsService.getTrait("valorous", traits)}}</div>
     </div>
     
 </div>

@@ -64,7 +64,16 @@ namespace ProjectPendragonBackend.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateCharacterAsync([FromRoute] Guid id, UpdateCharacterRequest request)
         {
-            var character = await _projectPendragonDbContext.Characters.FindAsync(id);
+            var character = await this._projectPendragonDbContext.Characters
+                .Include(i => i.Attributes)
+                .Include(i => i.Skills)
+                .ThenInclude(t => t.Core)
+                .Include(i => i.Skills)
+                .ThenInclude(t => t.Combat)
+                .Include(i => i.Traits)
+                .Include(i => i.Wealth)
+                .Include(i => i.Passions)
+                .FirstOrDefaultAsync(x => x.Id == id);
 
             if (character == null)
                 return NotFound();

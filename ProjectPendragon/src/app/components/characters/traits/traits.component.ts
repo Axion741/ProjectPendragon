@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Traits } from 'src/app/models/character/traits';
+import { TraitsService } from 'src/app/services/traits.service';
 
 @Component({
   selector: 'traits',
@@ -10,7 +11,7 @@ export class TraitsComponent implements OnInit {
   @Input() traits: Traits = new Traits();
   @Output() traitsChange: EventEmitter<Traits> = new EventEmitter<Traits>();
 
-  constructor() { }
+  constructor(public _traitsService: TraitsService) { }
 
   ngOnInit(): void {
   }

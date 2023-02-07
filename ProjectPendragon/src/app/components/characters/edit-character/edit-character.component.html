@@ -1,36 +1,142 @@
 <div class="container my-5">
     <h1 class="mb-3">Edit Character</h1>
 
-    <div class="row">
-        <div class="col-6">
+    <div class="row" *ngIf="!this.isLoading">
+        <div class="col-6 mw-600">
             <form #form="ngForm" (ngSubmit)="updateCharacter()">
-                <div class="mb-3">
-                    <label class="form-label">Name</label>
-                    <input type="text" class="form-control" id="name" [(ngModel)]="character.name" name="name">
+                <div class="row"> <!--Name/Glory/Class-->
+                    <div class="mb-3 col">
+                        <label class="form-label">Name</label>
+                        <input type="text" class="form-control" id="name" [(ngModel)]="character.name" name="name">
+                    </div>
+                    <div class="mb-3 col">
+                        <label class="form-label">Glory</label>
+                        <input type="number" class="form-control" id="glory" [(ngModel)]="character.glory" name="glory">
+                    </div>
+                    <div class="mb-3 col">
+                        <label>Class</label>
+                        <select class="form-select mt-2" [(ngModel)]="character.class" name="classSelect">
+                            <option *ngFor="let class of EClass | keyvalue: returnZero" value="{{class.value}}">{{ class.key | enumSpacing }}</option>
+                        </select>
+                    </div>
                 </div>
-                <div class="mb-3">
-                    <label class="form-label">Year Born</label>
-                    <input type="number" class="form-control" id="yearBorn" [(ngModel)]="character.yearBorn" name="yearBorn">
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">Gender</label>
-                    <div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="genderRadio" id="male" [value]="0" [(ngModel)]="character.gender" name="gender">
-                            <label class="form-check-label" for="male">
-                                Male
-                            </label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="genderRadio" id="female" [value]="1" [(ngModel)]="character.gender" name="gender">
-                            <label class="form-check-label" for="female">
-                                Female
-                            </label>
+                <div class="row"> <!--YearBorn/Gender-->
+                    <div class="mb-3 col">
+                        <label class="form-label">Year Born</label>
+                        <input type="number" class="form-control" id="yearBorn" [(ngModel)]="character.yearBorn" name="yearBorn">
+                    </div>
+                    <div class="mb-3 col">
+                        <label class="form-label">Gender</label>
+                        <div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="genderRadio" id="male" [value]="0" [(ngModel)]="character.gender" name="gender">
+                                <label class="form-check-label" for="male">
+                                    Male
+                                </label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="genderRadio" id="female" [value]="1" [(ngModel)]="character.gender" name="gender">
+                                <label class="form-check-label" for="female">
+                                    Female
+                                </label>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary save-button">Save</button>
-                <button type="button" class="btn btn-danger" (click)="deleteCharacter()">Delete</button>
+                <div class="row"> <!--Culture/Religion-->
+                    <div class="mb-3 col">
+                        <label>Culture</label>
+                        <select class="form-select" [(ngModel)]="character.culture" name="cultureSelect">
+                            <option *ngFor="let culture of ECulture | keyvalue: returnZero" value="{{culture.value}}">{{ culture.key }}</option>
+                        </select>
+                    </div>
+                    <div class="mb-3 col">
+                        <label>Religion</label>
+                        <select class="form-select" [(ngModel)]="character.religion" name="religionSelect">
+                            <option *ngFor="let religion of EReligion | keyvalue: returnZero" value="{{religion.value}}">{{ religion.key | enumSpacing }}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row"> <!--Home/Liegelord-->
+                    <div class="mb-3 col">
+                        <label class="form-label">Home</label>
+                        <input type="text" class="form-control" id="home" [(ngModel)]="character.home" name="home">
+                    </div>
+                    <div class="mb-3 col">
+                        <label class="form-label">Liegelord</label>
+                        <input type="text" class="form-control" id="liegeLord" [(ngModel)]="character.liegeLord" name="liegeLord">
+                    </div>
+                </div>
+                <div class="row"> <!--Home/Liegelord-->
+                    <label>Wealth</label>
+                    <div class="mb-3 col">
+                        <label class="form-label">Libra</label>
+                        <input type="number" class="form-control" id="libra" [(ngModel)]="character.wealth.libra" name="libra">
+                    </div>
+                    <div class="mb-3 col">
+                        <label class="form-label">Shilling</label>
+                        <input type="number" class="form-control" id="shilling" [(ngModel)]="character.wealth.shilling" name="shilling">
+                    </div>
+                    <div class="mb-3 col">
+                        <label class="form-label">Denari</label>
+                        <input type="number" class="form-control" id="denari" [(ngModel)]="character.wealth.denari" name="denari">
+                    </div>
+                </div>
+                <!-- Tabs -->
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item">
+                      <button class="nav-link active" id="attr-tab" data-bs-toggle="tab" data-bs-target="#attr-tab-pane" type="button" role="tab" aria-controls="attr-tab-pane" aria-selected="true">Attributes</button>
+                    </li>
+                    <li class="nav-item">
+                      <button class="nav-link" id="traits-tab" data-bs-toggle="tab" data-bs-target="#traits-tab-pane" type="button" role="tab" aria-controls="traits-tab-pane" aria-selected="false">Traits</button>
+                    </li>
+                    <li class="nav-item">
+                      <button class="nav-link" id="passions-tab" data-bs-toggle="tab" data-bs-target="#passions-tab-pane" type="button" role="tab" aria-controls="passions-tab-pane" aria-selected="false">Passions</button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link" id="skills-tab" data-bs-toggle="tab" data-bs-target="#skills-tab-pane" type="button" role="tab" aria-controls="skills-tab-pane" aria-selected="false">Skills</button>
+                      </li>
+                    <li class="nav-item">
+                      <button class="nav-link" id="misc-tab" data-bs-toggle="tab" data-bs-target="#misc-tab-pane" type="button" role="tab" aria-controls="misc-tab-pane" aria-selected="false">Misc</button>
+                    </li>
+                  </ul>
+                  <div class="tab-content" id="myTabContent">
+                    <!-- Attributes Tab Content -->
+                    <div class="tab-pane fade show active" id="attr-tab-pane" role="tabpanel" aria-labelledby="attr-tab" tabindex="0">
+                        <attributes [attributes]="this.character.attributes" (attributesChange)="onAttributesChange($event)"></attributes>
+                    </div>
+                    <!-- Traits Tab Content -->
+                    <div class="tab-pane fade" id="traits-tab-pane" role="tabpanel" aria-labelledby="traits-tab" tabindex="0">
+                        <traits [traits]="this.character.traits" (traitsChange)="onTraitsChange($event)"></traits>
+                    </div>
+                    <!-- Passions Tab Content -->
+                    <div class="tab-pane fade" id="passions-tab-pane" role="tabpanel" aria-labelledby="passions-tab" tabindex="0">
+                        <passions [passions]="this.character.passions" (passionsChange)="onPassionsChange($event)"></passions>
+                    </div>
+                    <!-- Skills Tab Content -->
+                    <div class="tab-pane fade" id="skills-tab-pane" role="tabpanel" aria-labelledby="skills-tab" tabindex="0">
+                        <skills [skills]="this.character.skills" (skillsChange)="onSkillsChange($event)"></skills>
+                    </div>
+                    <!-- Misc Tab Content -->
+                    <div class="tab-pane fade" id="misc-tab-pane" role="tabpanel" aria-labelledby="misc-tab" tabindex="0">
+                        <div class="row"> <!--BirthNo/FathersName/Dist.Features-->
+                            <div class="mb-3 col">
+                                <label class="form-label">Father's Name</label>
+                                <input type="text" class="form-control" id="fathersName" [(ngModel)]="character.fathersName" name="fathersName">
+                            </div>
+                            <div class="mb-3 col">
+                                <label class="form-label">Birth No.</label>
+                                <input type="number" class="form-control" id="birthNo" [(ngModel)]="character.birthNumber" name="birthNo">
+                            </div>
+                            <div class="mb-3 col">
+                                <label class="form-label">Distinctive Features</label>
+                                <input type="text" class="form-control" id="distFeatures" [(ngModel)]="character.distinctiveFeatures" name="distFeatures">
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+                <button type="submit" class="btn btn-primary">Save</button>
+                <button type="button" class="btn btn-danger" [disabled]="true" (click)="deleteCharacter()">Delete</button>
             </form>
         </div>
     </div>
