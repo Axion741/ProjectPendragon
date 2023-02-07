@@ -6,6 +6,7 @@ import { EditCharacterComponent } from "./components/characters/edit-character/e
 import { DisconnectedPageComponent } from "./components/disconnected-page/disconnected-page.component";
 import { LandingPageComponent } from "./components/landing-page/landing-page.component";
 import { NotFoundPageComponent } from "./components/not-found-page/not-found-page.component";
+import { CharacterResolverService } from "./services/resolvers/character-resolver.service";
 
 const routes: Routes = [
     {
@@ -14,15 +15,24 @@ const routes: Routes = [
     },
     {
         path: 'characters',
-        component: CharactersListComponent
+        component: CharactersListComponent,
+        resolve: {
+            data: CharacterResolverService
+        }
     },
     {
         path: 'characters/add',
-        component: AddCharacterComponent
+        component: AddCharacterComponent,
+        resolve: {
+            data: CharacterResolverService
+        }
     },
     {
         path: 'characters/edit/:id',
-        component: EditCharacterComponent
+        component: EditCharacterComponent,
+        resolve: {
+            data: CharacterResolverService
+        }
     },
     {
         path: 'disconnected',

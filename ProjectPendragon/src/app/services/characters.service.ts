@@ -13,17 +13,32 @@ import { GlobalService } from './global-service.service';
 export class CharactersService {
 
   baseApiUrl: string;
+  allCharacterList: Character[] = [];
+  selectedCharacter: Character = new Character();
 
   constructor(private http: HttpClient, private _globalService: GlobalService) {
     this.baseApiUrl = _globalService.baseApiUrl;
    }
 
-  getAllCharacters(): Observable<Character[]> {
-    return this.http.get<Character[]>(this.baseApiUrl + "/api/character");
+  getAllCharacters(): Promise<Character[]> {
+    return new Promise((resolve, reject) => {
+      this.http.get<Character[]>(this.baseApiUrl + "/api/character")
+      .subscribe({
+        next: (chars) => { this.allCharacterList = chars, resolve(chars) },
+        error: (e) => console.error("KB - getAllCharacters", e),
+      })
+    })
   }
 
-  getCharacterById(id: string): Observable<Character> {
-    return this.http.get<Character>(this.baseApiUrl + "/api/character/" + id);
+  getCharacterById(id: string): Promise<Character> {
+    //return this.http.get<Character>(this.baseApiUrl + "/api/character/" + id);
+    return new Promise((resolve, reject) => {
+      this.http.get<Character>(this.baseApiUrl + "/api/character/" + id)
+      .subscribe({
+        next: (char) => { this.selectedCharacter = char, resolve(char) },
+        error: (e) => console.error("KB - getCharacterById", e),
+      })
+    })
   }
 
   addCharacter(request: AddCharacterRequest): Observable<Character> {

@@ -25,28 +25,10 @@ export class EditCharacterComponent implements OnInit {
   EClass = EClass;
   
   character: Character = {} as Character;
-  isLoading : boolean = false;
   constructor(private _route: ActivatedRoute, private _router: Router, private _charactersService: CharactersService) { }
 
-  ngOnInit(): void {
-    this.isLoading = true; 
-    
-    this._route.paramMap.subscribe({
-      next: (params) => {
-        const id = params.get('id');
-
-        if (id) {
-          this._charactersService.getCharacterById(id)
-            .subscribe({
-              next: (response) => {
-                this.character = response;
-                this.isLoading = false;
-                console.log(this.character)
-              }
-            })
-        }
-      }
-    })
+  ngOnInit(): void {    
+    this.character = this._charactersService.selectedCharacter;
   }
 
   updateCharacter() {
