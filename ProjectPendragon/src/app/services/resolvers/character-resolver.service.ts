@@ -19,6 +19,16 @@ export class CharacterResolverService implements Resolve<any> {
         }, reject)
       })
     }
+    else if (route.routeConfig?.path === 'characters/view/:id') {
+      return new Promise<void>((resolve, reject) => {
+        Promise.all([
+          this.characterService.getAllCharacters(),
+          this.characterService.getCharacterById(route.params['id'])
+        ]).then(() => {
+          resolve();
+        }, reject)
+      })
+    }
     else if (route.routeConfig?.path === 'characters/add') {
       return new Promise<void>((resolve, reject) => {
         Promise.all([

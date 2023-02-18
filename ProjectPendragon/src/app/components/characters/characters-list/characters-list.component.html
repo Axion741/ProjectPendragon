@@ -17,7 +17,7 @@
                 <td>{{character.name}}</td>
                 <td>{{getCharacterAge(character.yearBorn)}}</td>
                 <td>{{character.gender | genderPipe}}</td>
-                <td><a [routerLink]="['/characters', 'edit', character.id]">Edit</a></td>
+                <td><a [routerLink]="['/characters', 'view', character.id]">View</a></td>
             </tr>
         </tbody>
       </table>

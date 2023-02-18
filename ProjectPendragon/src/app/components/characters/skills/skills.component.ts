@@ -14,6 +14,7 @@ export class SkillsComponent implements OnInit {
   ECombatSkills = ECombatSkills;
 
   @Input() skills: Skills = new Skills();
+  @Input() readonly: boolean = false;
   @Output() skillsChange: EventEmitter<Skills> = new EventEmitter<Skills>();
 
   constructor() { }

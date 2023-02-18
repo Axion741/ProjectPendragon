@@ -9,6 +9,7 @@ import { Attributes } from 'src/app/models/character/attributes';
 export class AttributesComponent implements OnInit {
 
   @Input() attributes: Attributes = new Attributes();
+  @Input() readonly: boolean = false;
   @Output() attributesChange: EventEmitter<Attributes> = new EventEmitter<Attributes>();
 
   constructor() { }

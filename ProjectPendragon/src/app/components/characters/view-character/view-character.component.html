@@ -1,42 +1,38 @@
 <div class="container my-5">
-    <h1 class="mb-3">Edit Character</h1>
+    <h1 class="mb-3">View Character</h1>
 
     <div class="row">
         <div class="col-6 mw-600">
-            <form #form="ngForm" (ngSubmit)="updateCharacter()">
+            <form #form="ngForm">
                 <div class="row"> <!--Name/Glory/Class-->
                     <div class="mb-3 col">
                         <label class="form-label">Name</label>
-                        <input type="text" class="form-control" id="name" [(ngModel)]="character.name" name="name">
+                        <input type="text" class="form-control-plaintext" id="name" [(ngModel)]="character.name" name="name" disabled="true">
                     </div>
                     <div class="mb-3 col">
                         <label class="form-label">Glory</label>
-                        <input type="number" class="form-control" id="glory" [(ngModel)]="character.glory" name="glory">
+                        <input type="number" class="form-control-plaintext" id="glory" [(ngModel)]="character.glory" name="glory" disabled="true">
                     </div>
                     <div class="mb-3 col">
                         <label>Class</label>
-                        <select class="form-select mt-2" [(ngModel)]="character.class" name="classSelect">
-                            <option *ngFor="let class of EClass | keyvalue: returnZero" value="{{class.value}}">{{ class.key | enumSpacing }}</option>
-                        </select>
+                        <input type="text" class="form-control-plaintext" id="class" name="class" disabled="true" value="{{getEnumKey(EClass, character.class)}}">
                     </div>
                 </div>
                 <div class="row"> <!--YearBorn/Gender-->
                     <div class="mb-3 col">
                         <label class="form-label">Year Born</label>
-                        <input type="number" class="form-control" id="yearBorn" [(ngModel)]="character.yearBorn" name="yearBorn">
+                        <input type="number" class="form-control-plaintext" id="yearBorn" [(ngModel)]="character.yearBorn" name="yearBorn" disabled="true">
                     </div>
                     <div class="mb-3 col">
                         <label class="form-label">Gender</label>
                         <div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="genderRadio" id="male" [value]="0" [(ngModel)]="character.gender" name="gender">
-                                <label class="form-check-label" for="male">
+                            <div *ngIf="character.gender == 0" class="">
+                                <label >
                                     Male
                                 </label>
                             </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="genderRadio" id="female" [value]="1" [(ngModel)]="character.gender" name="gender">
-                                <label class="form-check-label" for="female">
+                            <div *ngIf="character.gender == 1">
+                                <label>
                                     Female
                                 </label>
                             </div>
@@ -46,43 +42,27 @@
                 <div class="row"> <!--Culture/Religion-->
                     <div class="mb-3 col">
                         <label>Culture</label>
-                        <select class="form-select" [(ngModel)]="character.culture" name="cultureSelect">
-                            <option *ngFor="let culture of ECulture | keyvalue: returnZero" value="{{culture.value}}">{{ culture.key }}</option>
-                        </select>
+                        <input type="text" class="form-control-plaintext" id="culture" name="culture" disabled="true" value="{{getEnumKey(ECulture, character.culture)}}">
                     </div>
                     <div class="mb-3 col">
                         <label>Religion</label>
-                        <select class="form-select" [(ngModel)]="character.religion" name="religionSelect">
-                            <option *ngFor="let religion of EReligion | keyvalue: returnZero" value="{{religion.value}}">{{ religion.key | enumSpacing }}</option>
-                        </select>
+                        <input type="text" class="form-control-plaintext" id="religion" name="religion" disabled="true" value="{{getEnumKey(EReligion, character.religion) | enumSpacing }}">
                     </div>
                 </div>
                 <div class="row"> <!--Home/Liegelord-->
                     <div class="mb-3 col">
                         <label class="form-label">Home</label>
-                        <input type="text" class="form-control" id="home" [(ngModel)]="character.home" name="home">
+                        <input type="text" class="form-control-plaintext" id="home" [(ngModel)]="character.home" name="home" disabled="true">
                     </div>
                     <div class="mb-3 col">
                         <label class="form-label">Liegelord</label>
-                        <select class="form-select" [(ngModel)]="character.liegeLord" name="liegeLordSelect">
-                            <option [ngValue]="null">None</option>
-                            <option *ngFor="let char of allCharacterList" value="{{char.id}}">{{ char.name }}</option>
-                        </select>
+                        <input type="text" class="form-control-plaintext" id="liegelord" name="liegelord" disabled="true" value="{{ getLiegelordName() }}">
                     </div>
                 </div>
                 <div class="row"> <!--Wealth-->
-                    <label>Wealth</label>
                     <div class="mb-3 col">
-                        <label class="form-label">Libra</label>
-                        <input type="number" class="form-control" id="libra" [(ngModel)]="character.wealth.libra" name="libra">
-                    </div>
-                    <div class="mb-3 col">
-                        <label class="form-label">Shilling</label>
-                        <input type="number" class="form-control" id="shilling" [(ngModel)]="character.wealth.shilling" name="shilling">
-                    </div>
-                    <div class="mb-3 col">
-                        <label class="form-label">Denari</label>
-                        <input type="number" class="form-control" id="denari" [(ngModel)]="character.wealth.denari" name="denari">
+                        <label>Wealth</label>
+                        <input type="text" class="form-control-plaintext" id="wealth" name="wealth" disabled="true" value="{{ character.wealth.libra }} Libra, {{ character.wealth.shilling }} Shilling, {{ character.wealth.denari }} Denari">
                     </div>
                 </div>
                 <!-- Tabs -->
@@ -106,45 +86,40 @@
                 <div class="tab-content" id="myTabContent">
                     <!-- Attributes Tab Content -->
                     <div class="tab-pane fade show active" id="attr-tab-pane" role="tabpanel" aria-labelledby="attr-tab" tabindex="0">
-                        <attributes [attributes]="this.character.attributes" (attributesChange)="onAttributesChange($event)"></attributes>
+                        <attributes [attributes]="this.character.attributes" [readonly]="true"></attributes>
                     </div>
                     <!-- Traits Tab Content -->
                     <div class="tab-pane fade" id="traits-tab-pane" role="tabpanel" aria-labelledby="traits-tab" tabindex="0">
-                        <traits [traits]="this.character.traits" (traitsChange)="onTraitsChange($event)"></traits>
+                        <traits [traits]="this.character.traits" [readonly]="true"></traits>
                     </div>
                     <!-- Passions Tab Content -->
                     <div class="tab-pane fade" id="passions-tab-pane" role="tabpanel" aria-labelledby="passions-tab" tabindex="0">
-                        <passions [passions]="this.character.passions" (passionsChange)="onPassionsChange($event)"></passions>
+                        <passions [passions]="this.character.passions" [readonly]="true"></passions>
                     </div>
                     <!-- Skills Tab Content -->
                     <div class="tab-pane fade" id="skills-tab-pane" role="tabpanel" aria-labelledby="skills-tab" tabindex="0">
-                        <skills [skills]="this.character.skills" (skillsChange)="onSkillsChange($event)"></skills>
+                        <skills [skills]="this.character.skills" [readonly]="true"></skills>
                     </div>
                     <!-- Misc Tab Content -->
                     <div class="tab-pane fade" id="misc-tab-pane" role="tabpanel" aria-labelledby="misc-tab" tabindex="0">
                         <div class="row"> <!--BirthNo/FathersName/Dist.Features-->
                             <div class="mb-3 col">
                                 <label class="form-label">Father's Name</label>
-                                <input type="text" class="form-control" id="fathersName" [(ngModel)]="character.fathersName" name="fathersName">
+                                <input type="text" class="form-control-plaintext" id="fathersName" [(ngModel)]="character.fathersName" name="fathersName" disabled>
                             </div>
                             <div class="mb-3 col">
                                 <label class="form-label">Birth No.</label>
-                                <input type="number" class="form-control" id="birthNo" [(ngModel)]="character.birthNumber" name="birthNo">
+                                <input type="number" class="form-control-plaintext" id="birthNo" [(ngModel)]="character.birthNumber" name="birthNo" disabled>
                             </div>
                             <div class="mb-3 col">
                                 <label class="form-label">Distinctive Features</label>
-                                <input type="text" class="form-control" id="distFeatures" [(ngModel)]="character.distinctiveFeatures" name="distFeatures">
+                                <input type="text" class="form-control-plaintext" id="distFeatures" [(ngModel)]="character.distinctiveFeatures" name="distFeatures" disabled>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="row">
-                    <button type="button" class="btn btn-danger col" [disabled]="true" (click)="deleteCharacter()">Delete</button>
-                    <div class="col-8"></div>
-                    <button type="submit" class="btn btn-primary col">Save</button>
-                </div>
-                
+                <button class="btn btn-primary edit-button" (click)="routeToEditCharacter()">Edit</button>
             </form>
         </div>
     </div>

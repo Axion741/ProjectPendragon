@@ -8,6 +8,7 @@ import { Passion } from 'src/app/models/character/passion';
 })
 export class PassionsComponent implements OnInit {
   @Input() passions: Passion[] = [];
+  @Input() readonly: boolean = false;
   @Output() passionsChange: EventEmitter<Passion[]> = new EventEmitter<Passion[]>();
 
   constructor() { }

@@ -9,6 +9,7 @@ import { TraitsService } from 'src/app/services/traits.service';
 })
 export class TraitsComponent implements OnInit {
   @Input() traits: Traits = new Traits();
+  @Input() readonly: boolean = false;
   @Output() traitsChange: EventEmitter<Traits> = new EventEmitter<Traits>();
 
   constructor(public _traitsService: TraitsService) { }

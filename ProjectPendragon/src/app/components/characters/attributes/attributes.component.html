@@ -1,4 +1,4 @@
-<div class="container my-5">
+<div *ngIf="!readonly" class="container my-5">
     <h3 class="mb-3">Base Attributes</h3>
 
     <div class="row">
@@ -61,6 +61,76 @@
                     <div class="mb-3 col">
                         <label class="form-label">HEALING RATE</label>
                         <input type="text" class="form-control" id="heal" value="{{calculateHeal()}}" disabled>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="readonly" class="container my-5">
+    <h3 class="mb-3">Base Attributes</h3>
+
+    <div class="row">
+        <div class="col-6">
+            <form #form="ngForm">
+                <div class="row"> <!--SIZ/STR/DEX-->
+                    <div class="mb-3 col">
+                        <label class="form-label">SIZ</label>
+                        <input type="number" class="form-control-plaintext" id="siz" [(ngModel)]="attributes.siz" (ngModelChange)="emitAttributeChange()" name="siz" disabled>
+                        <small class="form-text text-muted">Knockdown</small>
+                    </div>
+                    <div class="mb-3 col">
+                        <label class="form-label">STR</label>
+                        <input type="number" class="form-control-plaintext" id="str" [(ngModel)]="attributes.str" (ngModelChange)="emitAttributeChange()" name="str" disabled>
+                    </div>
+                    <div class="mb-3 col">
+                        <label class="form-label">DEX</label>
+                        <input type="number" class="form-control-plaintext" id="dex" [(ngModel)]="attributes.dex" (ngModelChange)="emitAttributeChange()" name="dex" disabled>
+                    </div>
+                </div>
+                <div class="row"> <!--CON/APP-->
+                    <div class="mb-3 col">
+                        <label class="form-label">CON</label>
+                        <input type="number" class="form-control-plaintext" id="con" [(ngModel)]="attributes.con" (ngModelChange)="emitAttributeChange()" name="con" disabled>
+                        <small class="form-text text-muted">Major Wound</small>
+                    </div>
+                    <div class="mb-3 col">
+                        <label class="form-label">APP</label>
+                        <input type="number" class="form-control-plaintext" id="app" [(ngModel)]="attributes.app" (ngModelChange)="emitAttributeChange()" name="app" disabled>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <h3 class="mb-3">Derived Attributes</h3>
+
+    <div class="row">
+        <div class="col-6">
+            <form #form="ngForm">
+                <div class="row"> <!--HP/DAM/MOV-->
+                    <div class="mb-3 col">
+                        <label class="form-label">HP</label>
+                        <input type="text" class="form-control-plaintext" id="hp" value="{{calculateHp()}}" disabled>
+                    </div>
+                    <div class="mb-3 col">
+                        <label class="form-label">DAM</label>
+                        <input type="text" class="form-control-plaintext" id="dam" value="{{calculateDam()}}" disabled>
+                    </div>
+                    <div class="mb-3 col">
+                        <label class="form-label">MOV</label>
+                        <input type="text" class="form-control-plaintext" id="mov" value="{{calculateMov()}}" disabled>
+                    </div>
+                </div>
+                <div class="row"> <!--UNCON/HEAL-->
+                    <div class="mb-3 col">
+                        <label class="form-label">UNCONSCIOUS</label>
+                        <input type="text" class="form-control-plaintext" id="uncon" value="{{calculateUncon()}}" disabled>
+                    </div>
+                    <div class="mb-3 col">
+                        <label class="form-label">HEALING RATE</label>
+                        <input type="text" class="form-control-plaintext" id="heal" value="{{calculateHeal()}}" disabled>
                     </div>
                 </div>
             </form>

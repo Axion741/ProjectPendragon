@@ -17,6 +17,7 @@ import { NotFoundPageComponent } from './components/not-found-page/not-found-pag
 import { TraitsComponent } from './components/characters/traits/traits.component';
 import { PassionsComponent } from './components/characters/passions/passions.component';
 import { SkillsComponent } from './components/characters/skills/skills.component';
+import { ViewCharacterComponent } from './components/characters/view-character/view-character.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { SkillsComponent } from './components/characters/skills/skills.component
     NotFoundPageComponent,
     TraitsComponent,
     PassionsComponent,
-    SkillsComponent
+    SkillsComponent,
+    ViewCharacterComponent
   ],
   imports: [
     BrowserModule, HttpClientModule, AppRoutingModule, FormsModule
