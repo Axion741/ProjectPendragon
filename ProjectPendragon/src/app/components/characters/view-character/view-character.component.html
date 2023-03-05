@@ -1,5 +1,10 @@
 <div class="container my-5">
-    <h1 class="mb-3">View Character</h1>
+    <div class="row header-row">
+        <h1 class="mb-3 col-4">View Character</h1>
+        <div class="col-4"></div>
+        <button class="btn btn-primary edit-button col-1" (click)="routeToEditCharacter()">Edit</button>
+    </div>
+    
 
     <div class="row">
         <div class="col-6 mw-600">
@@ -15,7 +20,7 @@
                     </div>
                     <div class="mb-3 col">
                         <label>Class</label>
-                        <input type="text" class="form-control-plaintext" id="class" name="class" disabled="true" value="{{getEnumKey(EClass, character.class)}}">
+                        <input type="text" class="form-control-plaintext" id="class" name="class" disabled="true" value="{{getEnumKey(EClass, character.class) | enumSpacing}}">
                     </div>
                 </div>
                 <div class="row"> <!--YearBorn/Gender-->
@@ -118,8 +123,6 @@
                         </div>
                     </div>
                 </div>
-
-                <button class="btn btn-primary edit-button" (click)="routeToEditCharacter()">Edit</button>
             </form>
         </div>
     </div>
