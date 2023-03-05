@@ -4,6 +4,11 @@ body {
     color: rgb(209, 205, 199) !important;
 }
 
+.modal-content {
+    background-color:  #212529 !important; 
+    color: rgb(209, 205, 199) !important;
+}
+
 .mw-550 {
     min-width: 550px;
 }

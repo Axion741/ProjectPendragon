@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { CharactersService } from 'src/app/services/characters.service';
 import { UpdateCharacterRequest } from 'src/app/models/requests/update-character-request.model';
 import { Character } from 'src/app/models/character/character.model';
@@ -11,6 +11,9 @@ import { Attributes } from 'src/app/models/character/attributes';
 import { Passion } from 'src/app/models/character/passion';
 import { Skills } from 'src/app/models/character/skills';
 import { Traits } from 'src/app/models/character/traits';
+import { BsModalRef, BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
+import { ConfirmationDialogComponent } from '../../modals/confirmation-dialog/confirmation-dialog.component';
+import { ConfirmationDialogOptions } from 'src/app/models/dialogs/confirmation-dialog-options';
 
 @Component({
   selector: 'app-edit-character',
@@ -18,6 +21,8 @@ import { Traits } from 'src/app/models/character/traits';
   styleUrls: ['./edit-character.component.css']
 })
 export class EditCharacterComponent implements OnInit {
+
+  _modalRef?: BsModalRef;
 
   EGender = EGender;
   ECulture = ECulture;
@@ -27,7 +32,7 @@ export class EditCharacterComponent implements OnInit {
   character: Character = {} as Character;
   allCharacterList: Character[] = [];
 
-  constructor(private _route: ActivatedRoute, private _router: Router, private _charactersService: CharactersService) { }
+  constructor(private _router: Router, private _charactersService: CharactersService, private _modalService: BsModalService) { }
 
   ngOnInit(): void {    
     this.character = this._charactersService.selectedCharacter;
@@ -47,13 +52,41 @@ export class EditCharacterComponent implements OnInit {
   }
 
   deleteCharacter() {
-    this._charactersService.deleteCharacter(this.character.id)
-      .subscribe({
-        next: (response) => {
-          this._router.navigate(['characters']);
-        },
-        error: (error) => console.log("Delete Character Error", error)
-      })
+    var options = new ConfirmationDialogOptions();
+    options.title = "Delete Character";
+    options.message = `Are you sure you want to delete ${this.character.name}?`;
+    options.confirmText = 'Delete';
+    options.cancelText = 'Cancel';
+    options.confirmDanger = true;
+    options.cancelDanger = false;
+
+    const initialState: ModalOptions = {
+      initialState: {
+        options: options
+      },
+      backdrop: 'static',
+      keyboard: false
+    }
+
+    this._modalRef = this._modalService.show(ConfirmationDialogComponent, initialState);
+
+    this._modalRef.content.onClose.subscribe((value: boolean) => {
+      //console.log("KB - onClose", value);
+
+      if (value == false)
+        return;
+
+      if (value == true) {
+        this._charactersService.deleteCharacter(this.character.id)
+          .subscribe({
+            next: (response) => {
+              this._router.navigate(['characters']);
+            },
+            error: (error) => console.log("Delete Character Error", error)
+          })
+      }
+    })
+    
   }
 
     //Return 0 to stop keyvalue pipe sorting

@@ -18,7 +18,9 @@ import { PassionsComponent } from './components/characters/passions/passions.com
 import { SkillsComponent } from './components/characters/skills/skills.component';
 import { ViewCharacterComponent } from './components/characters/view-character/view-character.component';
 import { FormsModule } from '@angular/forms';
-import { TabsModule } from 'ngx-bootstrap/tabs'
+import { TabsModule } from 'ngx-bootstrap/tabs';
+import { ConfirmationDialogComponent } from './components/modals/confirmation-dialog/confirmation-dialog.component'
+import { BsModalService, ModalModule } from 'ngx-bootstrap/modal';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,8 @@ import { TabsModule } from 'ngx-bootstrap/tabs'
     TraitsComponent,
     PassionsComponent,
     SkillsComponent,
-    ViewCharacterComponent
+    ViewCharacterComponent,
+    ConfirmationDialogComponent
   ],
   imports: [
     BrowserModule, 
@@ -45,9 +48,10 @@ import { TabsModule } from 'ngx-bootstrap/tabs'
     
     FormsModule, 
     
-    TabsModule
+    TabsModule,
+    ModalModule
   ],
-  providers: [],
+  providers: [BsModalService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

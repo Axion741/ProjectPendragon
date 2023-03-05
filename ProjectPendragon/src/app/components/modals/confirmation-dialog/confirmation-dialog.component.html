@@ -1,0 +1,11 @@
+<div class="modal-header">
+    <h4 class="modal-title pull-left">{{options.title}}</h4>
+    <!-- <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef.hide()">
+        <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button> -->
+</div>
+<div class="modal-body text-center">
+    <p>{{options.message}}</p>
+    <button *ngIf="options.cancelText" type="button" class="btn mr-40" [ngClass]="options.cancelDanger ? 'btn-danger' : 'btn-secondary'" (click)="hide(false)" >No</button>
+    <button type="button" class="btn" [ngClass]="options.confirmDanger ? 'btn-danger' : 'btn-primary'" (click)="hide(true)">Yes</button>
+</div>
