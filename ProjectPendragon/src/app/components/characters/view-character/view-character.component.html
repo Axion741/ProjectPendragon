@@ -71,42 +71,20 @@
                     </div>
                 </div>
                 <!-- Tabs -->
-                <ul class="nav nav-tabs" id="myTab" role="tablist">
-                    <li class="nav-item">
-                      <button class="nav-link active" id="attr-tab" data-bs-toggle="tab" data-bs-target="#attr-tab-pane" type="button" role="tab" aria-controls="attr-tab-pane" aria-selected="true">Attributes</button>
-                    </li>
-                    <li class="nav-item">
-                      <button class="nav-link" id="traits-tab" data-bs-toggle="tab" data-bs-target="#traits-tab-pane" type="button" role="tab" aria-controls="traits-tab-pane" aria-selected="false">Traits</button>
-                    </li>
-                    <li class="nav-item">
-                      <button class="nav-link" id="passions-tab" data-bs-toggle="tab" data-bs-target="#passions-tab-pane" type="button" role="tab" aria-controls="passions-tab-pane" aria-selected="false">Passions</button>
-                    </li>
-                    <li class="nav-item">
-                        <button class="nav-link" id="skills-tab" data-bs-toggle="tab" data-bs-target="#skills-tab-pane" type="button" role="tab" aria-controls="skills-tab-pane" aria-selected="false">Skills</button>
-                      </li>
-                    <li class="nav-item">
-                      <button class="nav-link" id="misc-tab" data-bs-toggle="tab" data-bs-target="#misc-tab-pane" type="button" role="tab" aria-controls="misc-tab-pane" aria-selected="false">Misc</button>
-                    </li>
-                </ul>
-                <div class="tab-content" id="myTabContent">
-                    <!-- Attributes Tab Content -->
-                    <div class="tab-pane fade show active" id="attr-tab-pane" role="tabpanel" aria-labelledby="attr-tab" tabindex="0">
+                <tabset>
+                    <tab heading="Attributes">
                         <attributes [attributes]="this.character.attributes" [readonly]="true"></attributes>
-                    </div>
-                    <!-- Traits Tab Content -->
-                    <div class="tab-pane fade" id="traits-tab-pane" role="tabpanel" aria-labelledby="traits-tab" tabindex="0">
+                    </tab>
+                    <tab heading="Traits">
                         <traits [traits]="this.character.traits" [readonly]="true"></traits>
-                    </div>
-                    <!-- Passions Tab Content -->
-                    <div class="tab-pane fade" id="passions-tab-pane" role="tabpanel" aria-labelledby="passions-tab" tabindex="0">
+                    </tab>
+                    <tab heading="Passions">
                         <passions [passions]="this.character.passions" [readonly]="true"></passions>
-                    </div>
-                    <!-- Skills Tab Content -->
-                    <div class="tab-pane fade" id="skills-tab-pane" role="tabpanel" aria-labelledby="skills-tab" tabindex="0">
+                    </tab>
+                    <tab heading="Skills">
                         <skills [skills]="this.character.skills" [readonly]="true"></skills>
-                    </div>
-                    <!-- Misc Tab Content -->
-                    <div class="tab-pane fade" id="misc-tab-pane" role="tabpanel" aria-labelledby="misc-tab" tabindex="0">
+                    </tab>
+                    <tab heading="Misc">
                         <div class="row"> <!--BirthNo/FathersName/Dist.Features-->
                             <div class="mb-3 col">
                                 <label class="form-label">Father's Name</label>
@@ -121,8 +99,8 @@
                                 <input type="text" class="form-control-plaintext" id="distFeatures" [(ngModel)]="character.distinctiveFeatures" name="distFeatures" disabled>
                             </div>
                         </div>
-                    </div>
-                </div>
+                    </tab>
+                </tabset>
             </form>
         </div>
     </div>

@@ -7,7 +7,6 @@ import { AppComponent } from './app.component';
 import { CharactersListComponent } from './components/characters/characters-list/characters-list.component';
 import { GenderPipe } from './pipes/gender.pipe';
 import { AddCharacterComponent } from './components/characters/add-character/add-character.component';
-import { FormsModule } from '@angular/forms';
 import { EditCharacterComponent } from './components/characters/edit-character/edit-character.component';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
 import { DisconnectedPageComponent } from './components/disconnected-page/disconnected-page.component';
@@ -18,15 +17,16 @@ import { TraitsComponent } from './components/characters/traits/traits.component
 import { PassionsComponent } from './components/characters/passions/passions.component';
 import { SkillsComponent } from './components/characters/skills/skills.component';
 import { ViewCharacterComponent } from './components/characters/view-character/view-character.component';
+import { FormsModule } from '@angular/forms';
+import { TabsModule } from 'ngx-bootstrap/tabs'
 
 @NgModule({
   declarations: [
-    AppComponent,
-    CharactersListComponent,
-
     GenderPipe,
     EnumSpacingPipe,
-    
+
+    AppComponent,
+    CharactersListComponent,
     AddCharacterComponent,
     EditCharacterComponent,
     LandingPageComponent,
@@ -39,7 +39,13 @@ import { ViewCharacterComponent } from './components/characters/view-character/v
     ViewCharacterComponent
   ],
   imports: [
-    BrowserModule, HttpClientModule, AppRoutingModule, FormsModule
+    BrowserModule, 
+    HttpClientModule, 
+    AppRoutingModule, 
+    
+    FormsModule, 
+    
+    TabsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
