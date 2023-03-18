@@ -43,8 +43,6 @@ export class ViewCharacterComponent implements OnInit {
     var test = Object.keys(this.EClass);
     name = test[this.character.class];
 
-    console.log("KB - test", name)
-
     return name;
   }
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { CharactersService } from 'src/app/services/characters.service';
 import { UpdateCharacterRequest } from 'src/app/models/requests/update-character-request.model';
@@ -14,14 +14,17 @@ import { Traits } from 'src/app/models/character/traits';
 import { BsModalRef, BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
 import { ConfirmationDialogComponent } from '../../modals/confirmation-dialog/confirmation-dialog.component';
 import { ConfirmationDialogOptions } from 'src/app/models/dialogs/confirmation-dialog-options';
+import { ComponentCanDeactivate } from '../../pending-changes-guard';
+import { Observable } from 'rxjs';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-edit-character',
   templateUrl: './edit-character.component.html',
   styleUrls: ['./edit-character.component.css']
 })
-export class EditCharacterComponent implements OnInit {
-
+export class EditCharacterComponent implements OnInit, ComponentCanDeactivate {
+  @ViewChild('form') public form: NgForm = new NgForm([], []);
   _modalRef?: BsModalRef;
 
   EGender = EGender;
@@ -33,6 +36,12 @@ export class EditCharacterComponent implements OnInit {
   allCharacterList: Character[] = [];
 
   constructor(private _router: Router, private _charactersService: CharactersService, private _modalService: BsModalService) { }
+
+  // @HostListener allows us to also guard against browser refresh, close, etc.
+  @HostListener('window:beforeunload')
+  canDeactivate(): Observable<boolean> | boolean {
+    return this.form.dirty != true;
+  }
 
   ngOnInit(): void {    
     this.character = this._charactersService.selectedCharacter;

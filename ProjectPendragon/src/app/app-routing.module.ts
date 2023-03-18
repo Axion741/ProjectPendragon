@@ -7,6 +7,7 @@ import { ViewCharacterComponent } from "./components/characters/view-character/v
 import { DisconnectedPageComponent } from "./components/disconnected-page/disconnected-page.component";
 import { LandingPageComponent } from "./components/landing-page/landing-page.component";
 import { NotFoundPageComponent } from "./components/not-found-page/not-found-page.component";
+import { PendingChangesGuard } from "./components/pending-changes-guard";
 import { CharacterResolverService } from "./services/resolvers/character-resolver.service";
 
 const routes: Routes = [
@@ -33,14 +34,16 @@ const routes: Routes = [
         component: AddCharacterComponent,
         resolve: {
             data: CharacterResolverService
-        }
+        },
+        canDeactivate: [PendingChangesGuard]
     },
     {
         path: 'characters/edit/:id',
         component: EditCharacterComponent,
         resolve: {
             data: CharacterResolverService
-        }
+        },
+        canDeactivate: [PendingChangesGuard]
     },
     {
         path: 'disconnected',

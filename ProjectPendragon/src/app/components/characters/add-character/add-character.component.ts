@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { AddCharacterRequest } from 'src/app/models/requests/add-character-request.model';
 import { EGender } from 'src/app/models/character/e-gender';
@@ -11,13 +11,17 @@ import { Attributes } from 'src/app/models/character/attributes';
 import { Traits } from 'src/app/models/character/traits';
 import { Passion } from 'src/app/models/character/passion';
 import { Skills } from 'src/app/models/character/skills';
+import { Observable } from 'rxjs';
+import { NgForm } from '@angular/forms';
+import { ComponentCanDeactivate } from '../../pending-changes-guard';
 
 @Component({
   selector: 'app-add-character',
   templateUrl: './add-character.component.html',
   styleUrls: ['./add-character.component.css']
 })
-export class AddCharacterComponent implements OnInit {
+export class AddCharacterComponent implements OnInit, ComponentCanDeactivate {
+  @ViewChild('form') public form: NgForm = new NgForm([], []);
 
   EGender = EGender;
   ECulture = ECulture;
@@ -28,6 +32,12 @@ export class AddCharacterComponent implements OnInit {
   allCharacterList: Character[] = [];
 
   constructor(private _charactersService: CharactersService, private _router: Router) { }
+
+    // @HostListener allows us to also guard against browser refresh, close, etc.
+  @HostListener('window:beforeunload')
+  canDeactivate(): Observable<boolean> | boolean {
+    return this.form.dirty != true;
+  }
 
   ngOnInit(): void {
     this.allCharacterList = this._charactersService.allCharacterList;
