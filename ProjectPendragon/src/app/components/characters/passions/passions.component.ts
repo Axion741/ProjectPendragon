@@ -1,10 +1,12 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ControlContainer, NgForm } from '@angular/forms';
 import { Passion } from 'src/app/models/character/passion';
 
 @Component({
   selector: 'passions',
   templateUrl: './passions.component.html',
-  styleUrls: ['./passions.component.css']
+  styleUrls: ['./passions.component.css'],
+  viewProviders: [ {provide: ControlContainer, useExisting: NgForm } ]
 })
 export class PassionsComponent implements OnInit {
   @Input() passions: Passion[] = [];
@@ -40,7 +42,6 @@ export class PassionsComponent implements OnInit {
     var passion = this.passions.find(f => f.id == id);
 
     if (passion) {
-      passion.value = (event.target as HTMLInputElement).valueAsNumber;
       this.emitPassionsChange();
     }
     else 

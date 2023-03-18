@@ -1,0 +1,9 @@
+.view-button {
+    float: right;
+    max-height: 40px;
+    max-width: 60px;
+}
+
+.header-row {
+    align-items: center;
+}

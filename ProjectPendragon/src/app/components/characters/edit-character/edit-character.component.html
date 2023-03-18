@@ -1,29 +1,45 @@
 <div class="container my-5">
-    <h1 class="mb-3">Edit Character</h1>
+    <div class="row header-row">
+        <h1 class="mb-3 col-4">Edit Character</h1>
+        <div class="col-4"></div>
+        <button class="btn btn-primary view-button col-1" (click)="routeToViewCharacter()">Back</button>
+    </div>
 
     <div class="row">
         <div class="col-6 mw-600">
-            <form #form="ngForm" (ngSubmit)="updateCharacter()">
+            <form #form="ngForm" (ngSubmit)="form.valid && updateCharacter()">
                 <div class="row"> <!--Name/Glory/Class-->
                     <div class="mb-3 col">
                         <label class="form-label">Name</label>
-                        <input type="text" class="form-control" id="name" [(ngModel)]="character.name" name="name">
+                        <input type="text" class="form-control" id="name" [(ngModel)]="character.name" name="name" required #name="ngModel">
+                        <div *ngIf="name.invalid && (name.dirty || name.touched)" class="input-error">
+                            <div *ngIf="name.errors?.['required']">Name is required.</div>
+                        </div>
                     </div>
                     <div class="mb-3 col">
                         <label class="form-label">Glory</label>
-                        <input type="number" class="form-control" id="glory" [(ngModel)]="character.glory" name="glory">
+                        <input type="number" class="form-control" id="glory" [(ngModel)]="character.glory" name="glory" required #glory="ngModel">
+                        <div *ngIf="glory.invalid && (glory.dirty || glory.touched)" class="input-error">
+                            <div *ngIf="glory.errors?.['required']">Glory is required.</div>
+                        </div>
                     </div>
                     <div class="mb-3 col">
                         <label>Class</label>
-                        <select class="form-select mt-2" [(ngModel)]="character.class" name="classSelect">
+                        <select class="form-select mt-2" [(ngModel)]="character.class" name="classSelect" required #class="ngModel">
                             <option *ngFor="let class of EClass | keyvalue: returnZero" value="{{class.value}}">{{ class.key | enumSpacing }}</option>
                         </select>
+                        <div *ngIf="class.invalid && (class.dirty || class.touched)" class="input-error">
+                            <div *ngIf="class.errors?.['required']">Class is required.</div>
+                        </div>
                     </div>
                 </div>
                 <div class="row"> <!--YearBorn/Gender-->
                     <div class="mb-3 col">
                         <label class="form-label">Year Born</label>
-                        <input type="number" class="form-control" id="yearBorn" [(ngModel)]="character.yearBorn" name="yearBorn">
+                        <input type="number" class="form-control" id="yearBorn" [(ngModel)]="character.yearBorn" name="yearBorn" required #yearBorn="ngModel">
+                        <div *ngIf="yearBorn.invalid && (yearBorn.dirty || yearBorn.touched)" class="input-error">
+                            <div *ngIf="yearBorn.errors?.['required']">Year Born is required.</div>
+                        </div>
                     </div>
                     <div class="mb-3 col">
                         <label class="form-label">Gender</label>
@@ -46,21 +62,30 @@
                 <div class="row"> <!--Culture/Religion-->
                     <div class="mb-3 col">
                         <label>Culture</label>
-                        <select class="form-select" [(ngModel)]="character.culture" name="cultureSelect">
+                        <select class="form-select" [(ngModel)]="character.culture" name="cultureSelect" required #culture="ngModel">
                             <option *ngFor="let culture of ECulture | keyvalue: returnZero" value="{{culture.value}}">{{ culture.key }}</option>
                         </select>
+                        <div *ngIf="culture.invalid && (culture.dirty || culture.touched)" class="input-error">
+                            <div *ngIf="culture.errors?.['required']">Culture is required.</div>
+                        </div>
                     </div>
                     <div class="mb-3 col">
                         <label>Religion</label>
-                        <select class="form-select" [(ngModel)]="character.religion" name="religionSelect">
+                        <select class="form-select" [(ngModel)]="character.religion" name="religionSelect" required #religion="ngModel">
                             <option *ngFor="let religion of EReligion | keyvalue: returnZero" value="{{religion.value}}">{{ religion.key | enumSpacing }}</option>
                         </select>
+                        <div *ngIf="religion.invalid && (religion.dirty || religion.touched)" class="input-error">
+                            <div *ngIf="religion.errors?.['required']">Religion is required.</div>
+                        </div>
                     </div>
                 </div>
                 <div class="row"> <!--Home/Liegelord-->
                     <div class="mb-3 col">
                         <label class="form-label">Home</label>
-                        <input type="text" class="form-control" id="home" [(ngModel)]="character.home" name="home">
+                        <input type="text" class="form-control" id="home" [(ngModel)]="character.home" name="home" required #home="ngModel">
+                        <div *ngIf="home.invalid && (home.dirty || home.touched)" class="input-error">
+                            <div *ngIf="home.errors?.['required']">Home is required.</div>
+                        </div>
                     </div>
                     <div class="mb-3 col">
                         <label class="form-label">Liegelord</label>
@@ -74,15 +99,24 @@
                     <label>Wealth</label>
                     <div class="mb-3 col">
                         <label class="form-label">Libra</label>
-                        <input type="number" class="form-control" id="libra" [(ngModel)]="character.wealth.libra" name="libra">
+                        <input type="number" class="form-control" id="libra" [(ngModel)]="character.wealth.libra" name="libra" required #libra="ngModel">
+                        <div *ngIf="libra.invalid && (libra.dirty || libra.touched)" class="input-error">
+                            <div *ngIf="libra.errors?.['required']">Libra is required.</div>
+                        </div>
                     </div>
                     <div class="mb-3 col">
                         <label class="form-label">Shilling</label>
-                        <input type="number" class="form-control" id="shilling" [(ngModel)]="character.wealth.shilling" name="shilling">
+                        <input type="number" class="form-control" id="shilling" [(ngModel)]="character.wealth.shilling" name="shilling" required #shilling="ngModel">
+                        <div *ngIf="shilling.invalid && (shilling.dirty || shilling.touched)" class="input-error">
+                            <div *ngIf="shilling.errors?.['required']">Shilling is required.</div>
+                        </div>
                     </div>
                     <div class="mb-3 col">
                         <label class="form-label">Denari</label>
-                        <input type="number" class="form-control" id="denari" [(ngModel)]="character.wealth.denari" name="denari">
+                        <input type="number" class="form-control" id="denari" [(ngModel)]="character.wealth.denari" name="denari" required #denari="ngModel">
+                        <div *ngIf="denari.invalid && (denari.dirty || denari.touched)" class="input-error">
+                            <div *ngIf="denari.errors?.['required']">Denari is required.</div>
+                        </div>
                     </div>
                 </div>
                 <!-- Tabs -->
@@ -107,7 +141,10 @@
                             </div>
                             <div class="mb-3 col">
                                 <label class="form-label">Birth No.</label>
-                                <input type="number" class="form-control" id="birthNo" [(ngModel)]="character.birthNumber" name="birthNo">
+                                <input type="number" class="form-control" id="birthNo" [(ngModel)]="character.birthNumber" name="birthNo" required #birthNumber="ngModel">
+                                <div *ngIf="birthNumber.invalid && (birthNumber.dirty || birthNumber.touched)" class="input-error">
+                                    <div *ngIf="birthNumber.errors?.['required']">Birth No. is required.</div>
+                                </div>
                             </div>
                             <div class="mb-3 col">
                                 <label class="form-label">Distinctive Features</label>
@@ -117,10 +154,15 @@
                     </tab>
                 </tabset>
 
-                <div class="row">
+                <div *ngIf="form.valid" class="row">
                     <button type="button" class="btn btn-danger col" (click)="deleteCharacter()">Delete</button>
                     <div class="col-8"></div>
                     <button type="submit" class="btn btn-primary col">Save</button>
+                </div>
+                <div *ngIf="!form.valid" class="row">
+                    <button class="btn btn-danger col" disabled>Delete</button>
+                    <div class="col-8"></div>
+                    <button class="btn btn-primary col" disabled>Save</button>
                 </div>
                 
             </form>

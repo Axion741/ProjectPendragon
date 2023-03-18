@@ -4,6 +4,10 @@ body {
     color: rgb(209, 205, 199) !important;
 }
 
+body .input-error {
+    color: rgb(248, 23, 23) !important;
+}
+
 .modal-content {
     background-color:  #212529 !important; 
     color: rgb(209, 205, 199) !important;

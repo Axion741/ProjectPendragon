@@ -109,4 +109,8 @@ export class EditCharacterComponent implements OnInit {
     onSkillsChange(skills: Skills): void {
       this.character.skills = skills;
     }
+
+    routeToViewCharacter() {
+      this._router.navigate(['/characters', 'view', this.character.id]);
+    }
 }

@@ -1,10 +1,12 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ControlContainer, NgForm } from '@angular/forms';
 import { Attributes } from 'src/app/models/character/attributes';
 
 @Component({
   selector: 'attributes',
   templateUrl: './attributes.component.html',
-  styleUrls: ['./attributes.component.css']
+  styleUrls: ['./attributes.component.css'],
+  viewProviders: [ {provide: ControlContainer, useExisting: NgForm } ]
 })
 export class AttributesComponent implements OnInit {
 

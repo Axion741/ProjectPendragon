@@ -3,34 +3,47 @@
 
     <div class="row">
         <div class="col-6">
-            <form #form="ngForm">
                 <div class="row"> <!--SIZ/STR/DEX-->
                     <div class="mb-3 col">
                         <label class="form-label">SIZ</label>
-                        <input type="number" class="form-control" id="siz" [(ngModel)]="attributes.siz" (ngModelChange)="emitAttributeChange()" name="siz">
+                        <input type="number" class="form-control" id="siz" [(ngModel)]="attributes.siz" (ngModelChange)="emitAttributeChange()" name="siz" required #siz="ngModel">
                         <small class="form-text text-muted">Knockdown</small>
+                        <div *ngIf="siz.invalid && (siz.dirty || siz.touched)" class="input-error">
+                            <div *ngIf="siz.errors?.['required']">Siz is required.</div>
+                        </div>
                     </div>
                     <div class="mb-3 col">
                         <label class="form-label">STR</label>
-                        <input type="number" class="form-control" id="str" [(ngModel)]="attributes.str" (ngModelChange)="emitAttributeChange()" name="str">
+                        <input type="number" class="form-control" id="str" [(ngModel)]="attributes.str" (ngModelChange)="emitAttributeChange()" name="str" required #str="ngModel">
+                        <div *ngIf="str.invalid && (str.dirty || str.touched)" class="input-error">
+                            <div *ngIf="str.errors?.['required']">Str is required.</div>
+                        </div>
                     </div>
                     <div class="mb-3 col">
                         <label class="form-label">DEX</label>
-                        <input type="number" class="form-control" id="dex" [(ngModel)]="attributes.dex" (ngModelChange)="emitAttributeChange()" name="dex">
+                        <input type="number" class="form-control" id="dex" [(ngModel)]="attributes.dex" (ngModelChange)="emitAttributeChange()" name="dex" required #dex="ngModel">
+                        <div *ngIf="dex.invalid && (dex.dirty || dex.touched)" class="input-error">
+                            <div *ngIf="dex.errors?.['required']">Dex is required.</div>
+                        </div>
                     </div>
                 </div>
                 <div class="row"> <!--CON/APP-->
                     <div class="mb-3 col">
                         <label class="form-label">CON</label>
-                        <input type="number" class="form-control" id="con" [(ngModel)]="attributes.con" (ngModelChange)="emitAttributeChange()" name="con">
+                        <input type="number" class="form-control" id="con" [(ngModel)]="attributes.con" (ngModelChange)="emitAttributeChange()" name="con" required #con="ngModel">
                         <small class="form-text text-muted">Major Wound</small>
+                        <div *ngIf="con.invalid && (con.dirty || con.touched)" class="input-error">
+                            <div *ngIf="con.errors?.['required']">Con is required.</div>
+                        </div>
                     </div>
                     <div class="mb-3 col">
                         <label class="form-label">APP</label>
-                        <input type="number" class="form-control" id="app" [(ngModel)]="attributes.app" (ngModelChange)="emitAttributeChange()" name="app">
+                        <input type="number" class="form-control" id="app" [(ngModel)]="attributes.app" (ngModelChange)="emitAttributeChange()" name="app" required #app="ngModel">
+                        <div *ngIf="app.invalid && (app.dirty || app.touched)" class="input-error">
+                            <div *ngIf="app.errors?.['required']">App is required.</div>
+                        </div>
                     </div>
                 </div>
-            </form>
         </div>
     </div>
 
@@ -38,7 +51,6 @@
 
     <div class="row">
         <div class="col-6">
-            <form #form="ngForm">
                 <div class="row"> <!--HP/DAM/MOV-->
                     <div class="mb-3 col">
                         <label class="form-label">HP</label>
@@ -63,7 +75,6 @@
                         <input type="text" class="form-control" id="heal" value="{{calculateHeal()}}" disabled>
                     </div>
                 </div>
-            </form>
         </div>
     </div>
 </div>
@@ -73,7 +84,6 @@
 
     <div class="row">
         <div class="col-6">
-            <form #form="ngForm">
                 <div class="row"> <!--SIZ/STR/DEX-->
                     <div class="mb-3 col">
                         <label class="form-label">SIZ</label>
@@ -100,7 +110,6 @@
                         <input type="number" class="form-control-plaintext" id="app" [(ngModel)]="attributes.app" (ngModelChange)="emitAttributeChange()" name="app" disabled>
                     </div>
                 </div>
-            </form>
         </div>
     </div>
 
@@ -108,7 +117,6 @@
 
     <div class="row">
         <div class="col-6">
-            <form #form="ngForm">
                 <div class="row"> <!--HP/DAM/MOV-->
                     <div class="mb-3 col">
                         <label class="form-label">HP</label>
@@ -133,7 +141,6 @@
                         <input type="text" class="form-control-plaintext" id="heal" value="{{calculateHeal()}}" disabled>
                     </div>
                 </div>
-            </form>
         </div>
     </div>
 </div>

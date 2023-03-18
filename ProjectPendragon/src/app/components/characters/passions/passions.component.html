@@ -7,11 +7,17 @@
     <div class="row" *ngFor="let passion of passions">
         <div class="mb-3 col">
             <label class="form-label">Description</label>
-            <input type="text" class="form-control" id="name" [value]="passion.description" (change)="updatePassionDescription($event, passion.id)" name="description">
+            <input type="text" class="form-control" id="name" (change)="updatePassionDescription($event, passion.id)" name="description" [(ngModel)]="passion.description" required #name="ngModel">
+            <div *ngIf="name.invalid && (name.dirty || name.touched)" class="input-error">
+                <div *ngIf="name.errors?.['required']">Name is required.</div>
+            </div>
         </div>
         <div class="mb-3 col-2">
             <label class="form-label">Value</label>
-            <input type="number" class="form-control" id="glory" [value]="passion.value" (change)="updatePassionValue($event, passion.id)" name="value">
+            <input type="number" class="form-control" id="value" (change)="updatePassionValue($event, passion.id)" name="value" [(ngModel)]="passion.value" required #valueVar="ngModel">
+            <div *ngIf="valueVar.invalid && (valueVar.dirty || valueVar.touched)" class="input-error">
+                <div *ngIf="valueVar.errors?.['required']">Value is required.</div>
+            </div>
         </div>
         <button type="button" class="btn btn-danger remove-btn col-1" (click)="removePassion(passion.id)">x</button>
     </div>

@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ControlContainer, NgForm } from '@angular/forms';
 import { ECombatSkills } from 'src/app/models/character/e-combat-skills';
 import { ECoreSkills } from 'src/app/models/character/e-core-skills';
 import { Skill } from 'src/app/models/character/skill';
@@ -7,7 +8,8 @@ import { Skills } from 'src/app/models/character/skills';
 @Component({
   selector: 'skills',
   templateUrl: './skills.component.html',
-  styleUrls: ['./skills.component.css']
+  styleUrls: ['./skills.component.css'],
+  viewProviders: [ {provide: ControlContainer, useExisting: NgForm } ]
 })
 export class SkillsComponent implements OnInit {
   ECoreSkills = ECoreSkills;

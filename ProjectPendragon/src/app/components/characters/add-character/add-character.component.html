@@ -3,27 +3,39 @@
 
     <div class="row">
         <div class="col-6 mw-600">
-            <form #form="ngForm" (ngSubmit)="addCharacter()">
+            <form #form="ngForm" (ngSubmit)="form.valid && addCharacter()">
                 <div class="row"> <!--Name/Glory/Class-->
                     <div class="mb-3 col">
                         <label class="form-label">Name</label>
-                        <input type="text" class="form-control" id="name" [(ngModel)]="character.name" name="name">
+                        <input type="text" class="form-control" id="name" [(ngModel)]="character.name" name="name" required #name="ngModel">
+                        <div *ngIf="name.invalid && (name.dirty || name.touched)" class="input-error">
+                            <div *ngIf="name.errors?.['required']">Name is required.</div>
+                        </div>
                     </div>
                     <div class="mb-3 col">
                         <label class="form-label">Glory</label>
-                        <input type="number" class="form-control" id="glory" [(ngModel)]="character.glory" name="glory">
+                        <input type="number" class="form-control" id="glory" [(ngModel)]="character.glory" name="glory" required #glory="ngModel">
+                        <div *ngIf="glory.invalid && (glory.dirty || glory.touched)" class="input-error">
+                            <div *ngIf="glory.errors?.['required']">Glory is required.</div>
+                        </div>
                     </div>
                     <div class="mb-3 col">
                         <label>Class</label>
-                        <select class="form-select mt-2" [(ngModel)]="character.class" name="classSelect">
+                        <select class="form-select mt-2" [(ngModel)]="character.class" name="classSelect" required #class="ngModel">
                             <option *ngFor="let class of EClass | keyvalue: returnZero" [ngValue]="class.value">{{ class.key | enumSpacing }}</option>
                         </select>
+                        <div *ngIf="class.invalid && (class.dirty || class.touched)" class="input-error">
+                            <div *ngIf="class.errors?.['required']">Class is required.</div>
+                        </div>
                     </div>
                 </div>
                 <div class="row"> <!--YearBorn/Gender-->
                     <div class="mb-3 col">
                         <label class="form-label">Year Born</label>
-                        <input type="number" class="form-control" id="yearBorn" [(ngModel)]="character.yearBorn" name="yearBorn">
+                        <input type="number" class="form-control" id="yearBorn" [(ngModel)]="character.yearBorn" name="yearBorn" required #yearBorn="ngModel">
+                        <div *ngIf="yearBorn.invalid && (yearBorn.dirty || yearBorn.touched)" class="input-error">
+                            <div *ngIf="yearBorn.errors?.['required']">Year Born is required.</div>
+                        </div>
                     </div>
                     <div class="mb-3 col">
                         <label class="form-label">Gender</label>
@@ -46,21 +58,30 @@
                 <div class="row"> <!--Culture/Religion-->
                     <div class="mb-3 col">
                         <label>Culture</label>
-                        <select class="form-select" [(ngModel)]="character.culture" name="cultureSelect">
+                        <select class="form-select" [(ngModel)]="character.culture" name="cultureSelect" required #culture="ngModel">
                             <option *ngFor="let culture of ECulture | keyvalue: returnZero" [ngValue]="culture.value">{{ culture.key }}</option>
                         </select>
+                        <div *ngIf="culture.invalid && (culture.dirty || culture.touched)" class="input-error">
+                            <div *ngIf="culture.errors?.['required']">Culture is required.</div>
+                        </div>
                     </div>
                     <div class="mb-3 col">
                         <label>Religion</label>
-                        <select class="form-select" [(ngModel)]="character.religion" name="religionSelect">
+                        <select class="form-select" [(ngModel)]="character.religion" name="religionSelect" required #religion="ngModel">
                             <option *ngFor="let religion of EReligion | keyvalue: returnZero" [ngValue]="religion.value">{{ religion.key | enumSpacing }}</option>
                         </select>
+                        <div *ngIf="religion.invalid && (religion.dirty || religion.touched)" class="input-error">
+                            <div *ngIf="religion.errors?.['required']">Religion is required.</div>
+                        </div>
                     </div>
                 </div>
                 <div class="row"> <!--Home/Liegelord-->
                     <div class="mb-3 col">
                         <label class="form-label">Home</label>
-                        <input type="text" class="form-control" id="home" [(ngModel)]="character.home" name="home">
+                        <input type="text" class="form-control" id="home" [(ngModel)]="character.home" name="home" required #home="ngModel">
+                        <div *ngIf="home.invalid && (home.dirty || home.touched)" class="input-error">
+                            <div *ngIf="home.errors?.['required']">Home is required.</div>
+                        </div>
                     </div>
                     <div class="mb-3 col">
                         <label class="form-label">Liegelord</label>
@@ -74,54 +95,41 @@
                     <label>Wealth</label>
                     <div class="mb-3 col">
                         <label class="form-label">Libra</label>
-                        <input type="number" class="form-control" id="libra" [(ngModel)]="character.wealth.libra" name="libra">
+                        <input type="number" class="form-control" id="libra" [(ngModel)]="character.wealth.libra" name="libra" required #libra="ngModel">
+                        <div *ngIf="libra.invalid && (libra.dirty || libra.touched)" class="input-error">
+                            <div *ngIf="libra.errors?.['required']">Libra is required.</div>
+                        </div>
                     </div>
                     <div class="mb-3 col">
                         <label class="form-label">Shilling</label>
-                        <input type="number" class="form-control" id="shilling" [(ngModel)]="character.wealth.shilling" name="shilling">
+                        <input type="number" class="form-control" id="shilling" [(ngModel)]="character.wealth.shilling" name="shilling" required #shilling="ngModel">
+                        <div *ngIf="shilling.invalid && (shilling.dirty || shilling.touched)" class="input-error">
+                            <div *ngIf="shilling.errors?.['required']">Shilling is required.</div>
+                        </div>
                     </div>
                     <div class="mb-3 col">
                         <label class="form-label">Denari</label>
-                        <input type="number" class="form-control" id="denari" [(ngModel)]="character.wealth.denari" name="denari">
+                        <input type="number" class="form-control" id="denari" [(ngModel)]="character.wealth.denari" name="denari" required #denari="ngModel">
+                        <div *ngIf="denari.invalid && (denari.dirty || denari.touched)" class="input-error">
+                            <div *ngIf="denari.errors?.['required']">Denari is required.</div>
+                        </div>
                     </div>
                 </div>
                 <!-- Tabs -->
-                <ul class="nav nav-tabs" id="myTab" role="tablist">
-                    <li class="nav-item">
-                      <button class="nav-link active" id="attr-tab" data-bs-toggle="tab" data-bs-target="#attr-tab-pane" type="button" role="tab" aria-controls="attr-tab-pane" aria-selected="true">Attributes</button>
-                    </li>
-                    <li class="nav-item">
-                      <button class="nav-link" id="traits-tab" data-bs-toggle="tab" data-bs-target="#traits-tab-pane" type="button" role="tab" aria-controls="traits-tab-pane" aria-selected="false">Traits</button>
-                    </li>
-                    <li class="nav-item">
-                      <button class="nav-link" id="passions-tab" data-bs-toggle="tab" data-bs-target="#passions-tab-pane" type="button" role="tab" aria-controls="passions-tab-pane" aria-selected="false">Passions</button>
-                    </li>
-                    <li class="nav-item">
-                        <button class="nav-link" id="skills-tab" data-bs-toggle="tab" data-bs-target="#skills-tab-pane" type="button" role="tab" aria-controls="skills-tab-pane" aria-selected="false">Skills</button>
-                      </li>
-                    <li class="nav-item">
-                      <button class="nav-link" id="misc-tab" data-bs-toggle="tab" data-bs-target="#misc-tab-pane" type="button" role="tab" aria-controls="misc-tab-pane" aria-selected="false">Misc</button>
-                    </li>
-                  </ul>
-                  <div class="tab-content" id="myTabContent">
-                    <!-- Attributes Tab Content -->
-                    <div class="tab-pane fade show active" id="attr-tab-pane" role="tabpanel" aria-labelledby="attr-tab" tabindex="0">
+                <tabset>
+                    <tab heading="Attributes">
                         <attributes [attributes]="this.character.attributes" (attributesChange)="onAttributesChange($event)"></attributes>
-                    </div>
-                    <!-- Traits Tab Content -->
-                    <div class="tab-pane fade" id="traits-tab-pane" role="tabpanel" aria-labelledby="traits-tab" tabindex="0">
+                    </tab>
+                    <tab heading="Traits">
                         <traits [traits]="this.character.traits" (traitsChange)="onTraitsChange($event)"></traits>
-                    </div>
-                    <!-- Passions Tab Content -->
-                    <div class="tab-pane fade" id="passions-tab-pane" role="tabpanel" aria-labelledby="passions-tab" tabindex="0">
+                    </tab>
+                    <tab heading="Passions">
                         <passions [passions]="this.character.passions" (passionsChange)="onPassionsChange($event)"></passions>
-                    </div>
-                    <!-- Skills Tab Content -->
-                    <div class="tab-pane fade" id="skills-tab-pane" role="tabpanel" aria-labelledby="skills-tab" tabindex="0">
+                    </tab>
+                    <tab heading="Skills">
                         <skills [skills]="this.character.skills" (skillsChange)="onSkillsChange($event)"></skills>
-                    </div>
-                    <!-- Misc Tab Content -->
-                    <div class="tab-pane fade" id="misc-tab-pane" role="tabpanel" aria-labelledby="misc-tab" tabindex="0">
+                    </tab>
+                    <tab heading="Misc">
                         <div class="row"> <!--BirthNo/FathersName/Dist.Features-->
                             <div class="mb-3 col">
                                 <label class="form-label">Father's Name</label>
@@ -129,16 +137,20 @@
                             </div>
                             <div class="mb-3 col">
                                 <label class="form-label">Birth No.</label>
-                                <input type="number" class="form-control" id="birthNo" [(ngModel)]="character.birthNumber" name="birthNo">
+                                <input type="number" class="form-control" id="birthNo" [(ngModel)]="character.birthNumber" name="birthNo" required #birthNumber="ngModel">
+                                <div *ngIf="birthNumber.invalid && (birthNumber.dirty || birthNumber.touched)" class="input-error">
+                                    <div *ngIf="birthNumber.errors?.['required']">Birth No. is required.</div>
+                                </div>
                             </div>
                             <div class="mb-3 col">
                                 <label class="form-label">Distinctive Features</label>
                                 <input type="text" class="form-control" id="distFeatures" [(ngModel)]="character.distinctiveFeatures" name="distFeatures">
                             </div>
                         </div>
-                    </div>
-                  </div>
-                <button type="submit" class="btn btn-primary">Save</button>
+                    </tab>
+                </tabset>
+                <button *ngIf="form.valid" type="submit" class="btn btn-primary">Save</button>
+                <button *ngIf="!form.valid" class="btn btn-primary" disabled>Save</button>
             </form>
         </div>
     </div>

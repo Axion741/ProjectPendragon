@@ -4,23 +4,25 @@
         <div class="col">
             <h3 class="mb-3">Core Skills</h3>
 
-            <form #form="ngForm">
                 <div class="mb-3 col" *ngFor="let skill of skills.core">
                     <label class="form-label">{{skill.name}}</label>
-                    <input type="number" class="form-control" id="{{skill.name}}" [(ngModel)]="skill.value" (ngModelChange)="emitSkillsChange()" name="{{skill.name}}">
+                    <input type="number" class="form-control" id="{{skill.name}}" [(ngModel)]="skill.value" (ngModelChange)="emitSkillsChange()" name="{{skill.name}}" required #skillVar="ngModel">
+                    <div *ngIf="skillVar.invalid && (skillVar.dirty || skillVar.touched)" class="input-error">
+                        <div *ngIf="skillVar.errors?.['required']">{{skill.name}} is required.</div>
+                    </div>
                 </div>
-            </form>
         </div>
         <!-- Combat Skills -->
         <div class="col">
             <h3 class="mb-3">Combat Skills</h3>
 
-            <form #form="ngForm">
                 <div class="mb-3 col" *ngFor="let skill of skills.combat">
                     <label class="form-label">{{skill.name}}</label>
-                    <input type="number" class="form-control" id="{{skill.name}}" [(ngModel)]="skill.value" (ngModelChange)="emitSkillsChange()" name="{{skill.name}}">
+                    <input type="number" class="form-control" id="{{skill.name}}" [(ngModel)]="skill.value" (ngModelChange)="emitSkillsChange()" name="{{skill.name}}" required #skillVar="ngModel">
+                    <div *ngIf="skillVar.invalid && (skillVar.dirty || skillVar.touched)" class="input-error">
+                        <div *ngIf="skillVar.errors?.['required']">{{skill.name}} is required.</div>
+                    </div>
                 </div>
-            </form>
         </div>  
     </div>
 </div>
@@ -31,23 +33,19 @@
         <div class="col">
             <h3 class="mb-3">Core Skills</h3>
 
-            <form #form="ngForm">
                 <div class="mb-3 row" *ngFor="let skill of skills.core">
                     <label class="form-label col">{{skill.name}}</label>
                     <input type="number" class="form-control-plaintext col" id="{{skill.name}}" [(ngModel)]="skill.value" (ngModelChange)="emitSkillsChange()" name="{{skill.name}}" disabled>
                 </div>
-            </form>
         </div>
         <!-- Combat Skills -->
         <div class="col">
             <h3 class="mb-3">Combat Skills</h3>
 
-            <form #form="ngForm">
                 <div class="mb-3 row" *ngFor="let skill of skills.combat">
                     <label class="form-label col">{{skill.name}}</label>
                     <input type="number" class="form-control-plaintext col" id="{{skill.name}}" [(ngModel)]="skill.value" (ngModelChange)="emitSkillsChange()" name="{{skill.name}}" disabled>
                 </div>
-            </form>
         </div>  
     </div>
 </div>
