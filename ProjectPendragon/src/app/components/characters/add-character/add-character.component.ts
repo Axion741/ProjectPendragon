@@ -11,16 +11,14 @@ import { Attributes } from 'src/app/models/character/attributes';
 import { Traits } from 'src/app/models/character/traits';
 import { Passion } from 'src/app/models/character/passion';
 import { Skills } from 'src/app/models/character/skills';
-import { Observable } from 'rxjs';
 import { NgForm } from '@angular/forms';
-import { ComponentCanDeactivate } from '../../pending-changes-guard';
 
 @Component({
   selector: 'app-add-character',
   templateUrl: './add-character.component.html',
   styleUrls: ['./add-character.component.css']
 })
-export class AddCharacterComponent implements OnInit, ComponentCanDeactivate {
+export class AddCharacterComponent implements OnInit {
   @ViewChild('form') public form: NgForm = new NgForm([], []);
 
   EGender = EGender;
@@ -33,12 +31,6 @@ export class AddCharacterComponent implements OnInit, ComponentCanDeactivate {
 
   constructor(private _charactersService: CharactersService, private _router: Router) { }
 
-    // @HostListener allows us to also guard against browser refresh, close, etc.
-  @HostListener('window:beforeunload')
-  canDeactivate(): Observable<boolean> | boolean {
-    return this.form.dirty != true;
-  }
-
   ngOnInit(): void {
     this.allCharacterList = this._charactersService.allCharacterList;
   }
@@ -49,7 +41,7 @@ export class AddCharacterComponent implements OnInit, ComponentCanDeactivate {
     console.log("KB - new char", request)
     this._charactersService.addCharacter(request)
       .subscribe({
-        next: (character) => { this._router.navigate(['characters']) },
+        next: (character) => { this.form.form.markAsPristine(); this._router.navigate(['characters']) },
         error: (error) => { console.log("add character error", error) }
       });
   }

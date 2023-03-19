@@ -14,8 +14,6 @@ import { Traits } from 'src/app/models/character/traits';
 import { BsModalRef, BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
 import { ConfirmationDialogComponent } from '../../modals/confirmation-dialog/confirmation-dialog.component';
 import { ConfirmationDialogOptions } from 'src/app/models/dialogs/confirmation-dialog-options';
-import { ComponentCanDeactivate } from '../../pending-changes-guard';
-import { Observable } from 'rxjs';
 import { NgForm } from '@angular/forms';
 
 @Component({
@@ -23,7 +21,7 @@ import { NgForm } from '@angular/forms';
   templateUrl: './edit-character.component.html',
   styleUrls: ['./edit-character.component.css']
 })
-export class EditCharacterComponent implements OnInit, ComponentCanDeactivate {
+export class EditCharacterComponent implements OnInit {
   @ViewChild('form') public form: NgForm = new NgForm([], []);
   _modalRef?: BsModalRef;
 
@@ -37,12 +35,6 @@ export class EditCharacterComponent implements OnInit, ComponentCanDeactivate {
 
   constructor(private _router: Router, private _charactersService: CharactersService, private _modalService: BsModalService) { }
 
-  // @HostListener allows us to also guard against browser refresh, close, etc.
-  @HostListener('window:beforeunload')
-  canDeactivate(): Observable<boolean> | boolean {
-    return this.form.dirty != true;
-  }
-
   ngOnInit(): void {    
     this.character = this._charactersService.selectedCharacter;
     this.allCharacterList = this._charactersService.allCharacterList;
@@ -54,7 +46,8 @@ export class EditCharacterComponent implements OnInit, ComponentCanDeactivate {
     this._charactersService.updateCharacter(this.character.id, request)
       .subscribe({
         next: (response) => {
-          this._router.navigate(['characters']);
+          this.form.form.markAsPristine();
+          this._router.navigate(['/characters', 'view', this.character.id]);
         },
         error: (error) => console.log("Update Character Error", error)
       })

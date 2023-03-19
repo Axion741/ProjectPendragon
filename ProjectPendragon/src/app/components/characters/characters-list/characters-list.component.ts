@@ -16,17 +16,7 @@ export class CharactersListComponent implements OnInit {
   constructor(private _charactersService: CharactersService, private _globalService: GlobalService, private _router: Router, private _actRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    // this._charactersService.getAllCharacters()
-    //   .subscribe({
-    //     next: (chars) => { this.characters = chars },
-    //     error: (error) => console.error("getAllChars error", error)
-    //   });
-
     this.characters = this._charactersService.allCharacterList;
-
-    // this._actRoute.data.subscribe((data) => {
-    //   this.characters = data;
-    // })
   }
 
   routeToAddCharacter() {
