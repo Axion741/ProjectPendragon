@@ -21,6 +21,9 @@ import { FormsModule } from '@angular/forms';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ConfirmationDialogComponent } from './components/modals/confirmation-dialog/confirmation-dialog.component'
 import { BsModalService, ModalModule } from 'ngx-bootstrap/modal';
+import { UploadImageComponent } from './components/characters/upload-image/upload-image.component';
+import { UploadDialogComponent } from './components/modals/upload-dialog/upload-dialog.component';
+import { PortraitComponent } from './components/characters/portrait/portrait.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +42,10 @@ import { BsModalService, ModalModule } from 'ngx-bootstrap/modal';
     PassionsComponent,
     SkillsComponent,
     ViewCharacterComponent,
-    ConfirmationDialogComponent
+    ConfirmationDialogComponent,
+    UploadImageComponent,
+    UploadDialogComponent,
+    PortraitComponent
   ],
   imports: [
     BrowserModule, 

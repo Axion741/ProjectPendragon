@@ -78,7 +78,7 @@ namespace ProjectPendragonBackend.Controllers
                 IFormFile file = Request.Form.Files[0];
                 string ext = System.IO.Path.GetExtension(file.FileName);
 
-                if (!this._fileTypes.Contains(ext))
+                if (!this._fileTypes.Contains(ext.ToLowerInvariant()))
                     return BadRequest("Invalid FileType");
 
                 string fileName = id + ext;

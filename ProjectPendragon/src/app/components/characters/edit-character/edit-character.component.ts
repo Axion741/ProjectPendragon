@@ -15,6 +15,7 @@ import { BsModalRef, BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
 import { ConfirmationDialogComponent } from '../../modals/confirmation-dialog/confirmation-dialog.component';
 import { ConfirmationDialogOptions } from 'src/app/models/dialogs/confirmation-dialog-options';
 import { NgForm } from '@angular/forms';
+import { UploadDialogComponent } from '../../modals/upload-dialog/upload-dialog.component';
 
 @Component({
   selector: 'app-edit-character',
@@ -114,5 +115,9 @@ export class EditCharacterComponent implements OnInit {
 
     routeToViewCharacter() {
       this._router.navigate(['/characters', 'view', this.character.id]);
+    }
+
+    onClickUpload() {
+      this._modalRef = this._modalService.show(UploadDialogComponent, { initialState:{id: this.character.id}, backdrop: 'static', keyboard: false});
     }
 }

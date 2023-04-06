@@ -1,0 +1,13 @@
+.upload{
+    font-weight:bold;
+    color:#28a745;
+    margin-left: 15px;
+    line-height: 36px;
+  }
+
+.uploadBad {
+    color: rgb(170, 2, 2);
+    font-weight:bold;
+    margin-left: 15px;
+    line-height: 36px;
+}
