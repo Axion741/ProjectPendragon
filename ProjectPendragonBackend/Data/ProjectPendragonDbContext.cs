@@ -11,5 +11,6 @@ namespace ProjectPendragonBackend.Data
 
         public DbSet<Character> Characters { get; set; }
         public DbSet<Date> Dates { get; set; }
+        public DbSet<Upload> Uploads { get; set; }
     }
 }

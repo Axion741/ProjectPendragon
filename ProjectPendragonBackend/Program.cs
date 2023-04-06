@@ -1,9 +1,12 @@
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileProviders;
 using ProjectPendragonBackend;
 using ProjectPendragonBackend.Data;
 
-var builder = WebApplication.CreateBuilder(args);
+var opts = new WebApplicationOptions { WebRootPath = "wwwroot" };
+
+var builder = WebApplication.CreateBuilder(opts);
 
 // Add services to the container.
 
@@ -37,6 +40,18 @@ app.UseHttpsRedirection();
 app.UseCors(policy => policy.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
 
 app.UseAuthorization();
+
+app.UseStaticFiles();
+
+string uploadsDir = Path.Combine(app.Environment.WebRootPath, "Uploads");
+if (!Directory.Exists(uploadsDir))
+    Directory.CreateDirectory(uploadsDir);
+
+app.UseStaticFiles(new StaticFileOptions()
+{
+    RequestPath = "/Images",
+    FileProvider = new PhysicalFileProvider(uploadsDir)
+});
 
 app.MapControllers();
 
