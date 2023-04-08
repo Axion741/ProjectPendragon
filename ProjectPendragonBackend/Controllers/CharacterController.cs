@@ -89,12 +89,24 @@ namespace ProjectPendragonBackend.Controllers
             character.LiegeLord = request.LiegeLord;
             character.Class = request.Class;
             character.Traits = request.Traits;
-            character.Passions = request.Passions;
             character.Attributes = request.Attributes;
             character.DistinctiveFeatures = request.DistinctiveFeatures;
             character.Skills = request.Skills;
             character.Glory = request.Glory;
             character.Wealth = request.Wealth;
+
+            var oldPassionIds = character.Passions.Select(s => s.Id);
+            character.Passions = request.Passions;
+
+            foreach (var passion in character.Passions)
+            { 
+                if (oldPassionIds.Contains(passion.Id) == false)
+                {
+                    passion.Id = Guid.Empty;
+                }
+            }
+
+            character = this.SetCharacterIds(character, character.Id);
 
             await _projectPendragonDbContext.SaveChangesAsync();
 

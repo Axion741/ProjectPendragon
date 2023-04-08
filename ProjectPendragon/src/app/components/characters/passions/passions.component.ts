@@ -52,4 +52,8 @@ export class PassionsComponent implements OnInit {
     this.passions = this.passions.filter(f => f.id != id);
     this.emitPassionsChange();
   }
+
+  trackByIndex(index: number, passion: Passion): any {
+    return index;
+  }
 }

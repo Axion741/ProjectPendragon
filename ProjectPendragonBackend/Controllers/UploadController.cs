@@ -27,7 +27,7 @@ namespace ProjectPendragonBackend.Controllers
             var upload = await this._projectPendragonDbContext.Uploads.SingleOrDefaultAsync(s => s.Id == id);
 
             if (upload == null)
-                return NotFound();
+                return Ok(null);
 
             //TODO: Return Image
             string webRootPath = _webHostEnvironment.WebRootPath;
