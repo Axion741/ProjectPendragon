@@ -61,8 +61,13 @@
                         <input type="text" class="form-control-plaintext" id="home" [(ngModel)]="character.home" name="home" disabled="true">
                     </div>
                     <div class="mb-3 col">
-                        <label class="form-label">Liegelord</label>
-                        <input type="text" class="form-control-plaintext" id="liegelord" name="liegelord" disabled="true" value="{{ getLiegelordName() }}">
+                        <label class="form-label">Liegelord</label> 
+                        <input *ngIf="!character.liegeLord" type="text" class="form-control-plaintext" id="liegelord" name="liegelord" disabled="true" value="{{ getLiegelordName() }}">
+                        <a  *ngIf="character.liegeLord"
+                            class="form-control-plaintext link"
+                            [routerLink]="['/characters', 'view', this.character.liegeLord]"
+                            >{{getLiegelordName()}}
+                        </a>
                     </div>
                 </div>
                 <div class="row"> <!--Wealth-->

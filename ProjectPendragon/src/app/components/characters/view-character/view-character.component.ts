@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Character } from 'src/app/models/character/character.model';
 import { EClass } from 'src/app/models/character/e-class';
@@ -12,7 +12,7 @@ import { CharactersService } from 'src/app/services/characters.service';
   templateUrl: './view-character.component.html',
   styleUrls: ['./view-character.component.css']
 })
-export class ViewCharacterComponent implements OnInit {
+export class ViewCharacterComponent implements OnInit, AfterViewInit {
   EGender = EGender;
   ECulture = ECulture;
   EReligion = EReligion;
@@ -23,9 +23,18 @@ export class ViewCharacterComponent implements OnInit {
   
   constructor(private _route: ActivatedRoute, private _router: Router, private _charactersService: CharactersService) { }
 
-  ngOnInit(): void {    
+  ngOnInit(): void {   
     this.character = this._charactersService.selectedCharacter;
     this.allCharacterList = this._charactersService.allCharacterList;
+  }
+
+  ngAfterViewInit(): void {
+    this._route.params.subscribe((params) => {
+      this._charactersService.getCharacterById(params['id'])
+        .then((char) => {
+          this.character = char;
+        });
+    })
   }
 
   //Return 0 to stop keyvalue pipe sorting

@@ -7,3 +7,7 @@
 .header-row {
     align-items: center;
 }
+
+.link {
+    cursor: pointer;
+}

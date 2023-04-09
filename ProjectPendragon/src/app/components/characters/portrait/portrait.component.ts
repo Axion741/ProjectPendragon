@@ -24,8 +24,7 @@ export class PortraitComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     this.characterId = changes['characterId'] ? changes['characterId'].currentValue : this.characterId;
     
-    if (this.characterId != '' && !this.imageToShow)
-      this.getImageFromService();
+    this.getImageFromService();
   }
 
   getImageFromService() {
