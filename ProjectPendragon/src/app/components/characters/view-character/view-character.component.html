@@ -62,8 +62,8 @@
                     </div>
                     <div class="mb-3 col">
                         <label class="form-label">Liegelord</label> 
-                        <input *ngIf="!character.liegeLord" type="text" class="form-control-plaintext" id="liegelord" name="liegelord" disabled="true" value="{{ getLiegelordName() }}">
-                        <a  *ngIf="character.liegeLord"
+                        <input *ngIf="!character.liegeLord || getLiegelordName() == 'Unknown'" type="text" class="form-control-plaintext" id="liegelord" name="liegelord" disabled="true" value="{{ getLiegelordName() }}">
+                        <a  *ngIf="character.liegeLord && getLiegelordName() != 'Unknown'"
                             class="form-control-plaintext link"
                             [routerLink]="['/characters', 'view', this.character.liegeLord]"
                             >{{getLiegelordName()}}
