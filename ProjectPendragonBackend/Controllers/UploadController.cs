@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.EntityFrameworkCore;
 using ProjectPendragonBackend.Data;
 using ProjectPendragonBackend.Models;
+using ProjectPendragonBackend.Services.Interfaces;
 using System.Net.Http.Headers;
 
 namespace ProjectPendragonBackend.Controllers
@@ -15,10 +16,13 @@ namespace ProjectPendragonBackend.Controllers
 
         private readonly ProjectPendragonDbContext _projectPendragonDbContext;
         private readonly IWebHostEnvironment _webHostEnvironment;
-        public UploadController(ProjectPendragonDbContext projectPendragonDbContext, IWebHostEnvironment webHostEnvironment)
+        private readonly IUploadService _uploadService;
+        
+        public UploadController(ProjectPendragonDbContext projectPendragonDbContext, IWebHostEnvironment webHostEnvironment, IUploadService uploadService)
         {
             _webHostEnvironment = webHostEnvironment;
             _projectPendragonDbContext = projectPendragonDbContext;
+            _uploadService = uploadService;
         }
 
         [HttpGet("{id}")]
@@ -81,6 +85,16 @@ namespace ProjectPendragonBackend.Controllers
                 if (!this._fileTypes.Contains(ext.ToLowerInvariant()))
                     return BadRequest("Invalid FileType");
 
+                var existingFileNames = Directory.GetFiles(imageDir).Where(w => w.Contains(id));
+
+                if (existingFileNames != null && existingFileNames.Count() > 0) 
+                {
+                    foreach (var existingFileName in existingFileNames)
+                    {
+                        System.IO.File.Delete(existingFileName);
+                    }
+                }
+
                 string fileName = id + ext;
                 string fullPath = Path.Combine(imageDir, fileName);
 
@@ -119,23 +133,10 @@ namespace ProjectPendragonBackend.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteUpload(Guid id)
         {
-            var upload = await this._projectPendragonDbContext.Uploads.SingleOrDefaultAsync(s => s.Id == id);
+            var deleted = await this._uploadService.DeleteUploadAsync(id);
 
-            if (upload == null)
+            if (!deleted)
                 return NotFound();
-
-            //TODO: Return Image
-            string webRootPath = _webHostEnvironment.WebRootPath;
-            string uploadsDir = Path.Combine(webRootPath, "Uploads");
-            string imageDir = Path.Combine(uploadsDir, "Images");
-            string filePath = Path.Combine(imageDir, upload.FilePath);
-
-            if (!System.IO.File.Exists(filePath))
-                return NotFound();
-
-            System.IO.File.Delete(filePath);
-            this._projectPendragonDbContext.Remove(upload);
-            await this._projectPendragonDbContext.SaveChangesAsync();
 
             return Ok();
         }

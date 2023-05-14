@@ -27,6 +27,8 @@ var mappingConfig = new MapperConfiguration(mc =>
 IMapper mapper = mappingConfig.CreateMapper();
 builder.Services.AddSingleton(mapper);
 
+builder.Services.AddScoped<ProjectPendragonBackend.Services.Interfaces.IUploadService, ProjectPendragonBackend.Services.UploadService>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

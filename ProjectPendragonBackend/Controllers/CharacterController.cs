@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ProjectPendragonBackend.Data;
 using ProjectPendragonBackend.Models;
+using ProjectPendragonBackend.Services.Interfaces;
 
 namespace ProjectPendragonBackend.Controllers
 {
@@ -12,11 +13,13 @@ namespace ProjectPendragonBackend.Controllers
     {
         private readonly ProjectPendragonDbContext _projectPendragonDbContext;
         private readonly IMapper _mapper;
+        private readonly IUploadService _uploadService;
 
-        public CharacterController(ProjectPendragonDbContext projectPendragonDbContext, IMapper mapper)
+        public CharacterController(ProjectPendragonDbContext projectPendragonDbContext, IMapper mapper, IUploadService uploadService)
         {
             _projectPendragonDbContext = projectPendragonDbContext;
             _mapper = mapper;
+            _uploadService = uploadService;
         }
 
         [HttpGet]
@@ -123,6 +126,8 @@ namespace ProjectPendragonBackend.Controllers
 
             _projectPendragonDbContext.Characters.Remove(character);
             await _projectPendragonDbContext.SaveChangesAsync();
+
+            await this._uploadService.DeleteUploadAsync(id); //Don't care about result, may not have an upload anyway
 
             return Ok();
         }
