@@ -6,6 +6,7 @@ import { ECulture } from 'src/app/models/character/e-culture';
 import { EGender } from 'src/app/models/character/e-gender';
 import { EReligion } from 'src/app/models/character/e-religion';
 import { CharactersService } from 'src/app/services/characters.service';
+import { GlobalService } from 'src/app/services/global-service.service';
 
 @Component({
   selector: 'app-view-character',
@@ -20,12 +21,15 @@ export class ViewCharacterComponent implements OnInit, AfterViewInit {
   
   character: Character = {} as Character;
   allCharacterList: Character[] = [];
+  userCanEdit: boolean = false;
   
-  constructor(private _route: ActivatedRoute, private _router: Router, private _charactersService: CharactersService) { }
+  constructor(private _route: ActivatedRoute, private _router: Router, private _charactersService: CharactersService, private _globalService: GlobalService) { }
 
   ngOnInit(): void {   
     this.character = this._charactersService.selectedCharacter;
     this.allCharacterList = this._charactersService.allCharacterList;
+    this.userCanEdit = this._globalService.userRole == "admin" || this._globalService.userRole == "editor";
+    console.log(this._globalService.userRole)
   }
 
   ngAfterViewInit(): void {

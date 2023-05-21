@@ -1,6 +1,7 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
@@ -19,11 +20,14 @@ import { SkillsComponent } from './components/characters/skills/skills.component
 import { ViewCharacterComponent } from './components/characters/view-character/view-character.component';
 import { FormsModule } from '@angular/forms';
 import { TabsModule } from 'ngx-bootstrap/tabs';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { ConfirmationDialogComponent } from './components/modals/confirmation-dialog/confirmation-dialog.component'
 import { BsModalService, ModalModule } from 'ngx-bootstrap/modal';
 import { UploadImageComponent } from './components/characters/upload-image/upload-image.component';
 import { UploadDialogComponent } from './components/modals/upload-dialog/upload-dialog.component';
 import { PortraitComponent } from './components/characters/portrait/portrait.component';
+import { AuthModule } from '@auth0/auth0-angular';
+import { UserProfileComponent } from './components/auth/user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
@@ -45,17 +49,28 @@ import { PortraitComponent } from './components/characters/portrait/portrait.com
     ConfirmationDialogComponent,
     UploadImageComponent,
     UploadDialogComponent,
-    PortraitComponent
+    PortraitComponent,
+
+    UserProfileComponent
   ],
   imports: [
+    AuthModule.forRoot({
+      domain: '***REMOVED***',
+      clientId: '***REMOVED***',
+      authorizationParams: {
+        redirect_uri: window.location.origin
+      }
+    }),
     BrowserModule, 
+    BrowserAnimationsModule,
     HttpClientModule, 
     AppRoutingModule, 
     
     FormsModule, 
     
     TabsModule,
-    ModalModule
+    ModalModule,
+    BsDropdownModule
   ],
   providers: [BsModalService],
   bootstrap: [AppComponent]
