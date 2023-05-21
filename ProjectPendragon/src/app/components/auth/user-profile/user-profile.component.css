@@ -1,0 +1,20 @@
+.centered {
+    align-self: center;
+}
+
+.pr-30 {
+    padding-right: 30px;
+}
+
+.mr-30 {
+    margin-right: 30px;
+}
+
+.username {
+    color: white;
+}
+
+.dropdown-menu {
+    min-width: initial;
+    margin-left: 120px;
+}

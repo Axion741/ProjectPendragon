@@ -2,7 +2,8 @@
     <div class="row header-row">
         <h1 class="mb-3 col-4">View Character</h1>
         <div class="col-4"></div>
-        <button class="btn btn-primary edit-button col-1" (click)="routeToEditCharacter()">Edit</button>
+        <button *ngIf="userCanEdit" class="btn btn-primary edit-button col-1" (click)="routeToEditCharacter()">Edit</button>
+        <button *ngIf="!userCanEdit" class="btn btn-primary edit-button col-1" disabled>Edit</button>
     </div>
     
     <portrait [characterId]="character.id"></portrait>

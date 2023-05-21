@@ -12,7 +12,8 @@ export class AppComponent {
   constructor(private _globalService: GlobalService, private _router: Router) { 
     console.log("Initializing Heartbeat");
     this.getCurrentYear();   
-    var interval = setInterval(() => {this.getCurrentYear()}, 10000);
+    this.getIsAuthenticated();
+    var interval = setInterval(() => {this.getCurrentYear(), this.getIsAuthenticated()}, 10000);
   }
 
   title = 'ProjectPendragon';
@@ -39,5 +40,29 @@ export class AppComponent {
 
   isConnectedToServer(): boolean {
     return this._globalService.isConnectedToServer;
+  }
+
+  getIsAuthenticated() {
+    this._globalService.getIsAuthenticated()
+      .subscribe({
+        next: response => {
+          this._globalService.isAuthenticated = response;
+
+          if (response == false && this._router.url != "/") {
+            this._router.navigate(["/"]);
+          }
+        },
+        error: error => {
+          this._globalService.isAuthenticated = false;
+          if (this._router.url != "/") {
+            this._router.navigate(["/"]);
+          }
+          console.log("KB - Auth Error", error);
+        }
+      })
+  }
+
+  isAuthenticated(): boolean {
+    return this._globalService.isAuthenticated;
   }
 }
