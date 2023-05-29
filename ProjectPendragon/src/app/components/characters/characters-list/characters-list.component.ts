@@ -12,10 +12,12 @@ import { GlobalService } from 'src/app/services/global-service.service';
 export class CharactersListComponent implements OnInit {
 
   characters: Character[] = [];
+  userCanEdit: boolean = false;
 
   constructor(private _charactersService: CharactersService, private _globalService: GlobalService, private _router: Router, private _actRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.userCanEdit = this._globalService.userRole == "admin" || this._globalService.userRole == "editor";
     this.characters = this._charactersService.allCharacterList;
   }
 
