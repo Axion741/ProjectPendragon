@@ -5,7 +5,7 @@
         <button class="btn btn-primary view-button col-1" (click)="routeToViewCharacter()">Back</button>
     </div>
 
-    <button (click)="onClickUpload()">Upload</button>
+    <button *ngIf="userCanEdit" (click)="onClickUpload()">Upload</button>
 
     <div class="row">
         <div class="col-6 mw-600">
@@ -156,12 +156,13 @@
                     </tab>
                 </tabset>
 
-                <div *ngIf="form.valid" class="row">
-                    <button type="button" class="btn btn-danger col" (click)="deleteCharacter()">Delete</button>
+                <div *ngIf="form.valid && userCanEdit" class="row">
+                    <button *ngIf="userIsAdmin" type="button" class="btn btn-danger col" (click)="deleteCharacter()">Delete</button>
+                    <button *ngIf="!userIsAdmin" type="button" class="btn btn-danger col" disabled>Delete</button>
                     <div class="col-8"></div>
                     <button type="submit" class="btn btn-primary col">Save</button>
                 </div>
-                <div *ngIf="!form.valid" class="row">
+                <div *ngIf="!form.valid || !userCanEdit" class="row">
                     <button class="btn btn-danger col" disabled>Delete</button>
                     <div class="col-8"></div>
                     <button class="btn btn-primary col" disabled>Save</button>

@@ -16,6 +16,7 @@ import { ConfirmationDialogComponent } from '../../modals/confirmation-dialog/co
 import { ConfirmationDialogOptions } from 'src/app/models/dialogs/confirmation-dialog-options';
 import { NgForm } from '@angular/forms';
 import { UploadDialogComponent } from '../../modals/upload-dialog/upload-dialog.component';
+import { GlobalService } from 'src/app/services/global-service.service';
 
 @Component({
   selector: 'app-edit-character',
@@ -33,12 +34,16 @@ export class EditCharacterComponent implements OnInit {
   
   character: Character = {} as Character;
   allCharacterList: Character[] = [];
+  userCanEdit: boolean = false;
+  userIsAdmin: boolean = false;
 
-  constructor(private _router: Router, private _charactersService: CharactersService, private _modalService: BsModalService) { }
+  constructor(private _router: Router, private _charactersService: CharactersService, private _globalService: GlobalService, private _modalService: BsModalService) { }
 
   ngOnInit(): void {    
     this.character = this._charactersService.selectedCharacter;
-    this.allCharacterList = this._charactersService.allCharacterList;
+    this.allCharacterList = this._charactersService.allCharacterList;    
+    this.userCanEdit = this._globalService.userRole == "admin" || this._globalService.userRole == "editor";    
+    this.userIsAdmin = this._globalService.userRole == "admin";
   }
 
   updateCharacter() {
