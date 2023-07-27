@@ -42,5 +42,5 @@ testem.log
 Thumbs.db
 
 # Project Pendragon
-/Secure
-*/Uploads/Images
+/ProjectPendragonBackend/Secure/
+/ProjectPendragonBackend/wwwroot/Uploads/Images/
