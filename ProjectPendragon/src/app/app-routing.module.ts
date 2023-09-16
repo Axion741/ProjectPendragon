@@ -1,5 +1,5 @@
 import { inject, NgModule } from "@angular/core";
-import { Router, RouterModule, Routes, UrlTree } from "@angular/router";
+import { Router, RouterModule, Routes } from "@angular/router";
 import { AddCharacterComponent } from "./components/characters/add-character/add-character.component";
 import { CharactersListComponent } from "./components/characters/characters-list/characters-list.component";
 import { EditCharacterComponent } from "./components/characters/edit-character/edit-character.component";
@@ -22,12 +22,15 @@ const routes: Routes = [
     {
         path: 'characters',
         component: CharactersListComponent,
+        canActivate: [
+            async () => { const globalService = inject(GlobalService);
+                const router = inject(Router);
+                globalService.getIsAuthenticatedValue().then((value) => { console.log(value); if (value == true) return value; else return router.navigate([""]); })
+            }
+        ],
         resolve: {
             data: CharacterResolverService
-        },
-        canActivate: [
-            async () => { return inject(GlobalService).isAuthenticated || inject(Router).parseUrl("") }
-        ]
+        }
     },
     {
         path: 'characters/view/:id',
@@ -36,7 +39,10 @@ const routes: Routes = [
             data: CharacterResolverService
         },
         canActivate: [
-            async () => { return inject(GlobalService).isAuthenticated || inject(Router).parseUrl("") }
+            () => { const globalService = inject(GlobalService);
+                const router = inject(Router);
+                globalService.getIsAuthenticatedValue().then((value) => { console.log(value); if (value == true) return value; else {router.navigate([""]); return false} })
+            }
         ]
     },
     {
