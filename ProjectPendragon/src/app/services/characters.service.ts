@@ -31,7 +31,6 @@ export class CharactersService {
   }
 
   getCharacterById(id: string): Promise<Character> {
-    //return this.http.get<Character>(this.baseApiUrl + "/api/character/" + id);
     return new Promise((resolve, reject) => {
       this.http.get<Character>(this.baseApiUrl + "/api/character/" + id)
       .subscribe({

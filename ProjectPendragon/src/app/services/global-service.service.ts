@@ -16,7 +16,7 @@ export class GlobalService {
   userRole: string = "viewer";
 
   constructor(private _http: HttpClient, private _authService: AuthService) {
-   }
+  }
 
   getCurrentYear(): Observable<number> {
     return this._http.get<number>(this.baseApiUrl + "/api/date/current");
@@ -24,6 +24,17 @@ export class GlobalService {
 
   getIsAuthenticated(): Observable<boolean> {
     return this._authService.isAuthenticated$;
+  }
+
+  getIsAuthenticatedValue(): Promise<boolean> {
+    return new Promise((resolve, reject) => {
+      this._authService.isAuthenticated$
+      .subscribe({
+          next: response => {          
+            resolve(response);
+          }
+        })
+    })
   }
 
   getUserRole() : Promise<string> {
