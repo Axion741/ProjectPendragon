@@ -48,7 +48,7 @@ export class AppComponent {
         next: response => {
           this._globalService.isAuthenticated = response;
 
-          if (response == false && this._router.url != "/") {
+          if (response == false && (this._router.url != "/" && this._router.url != "/disconnected")) {
             this._router.navigate(["/"]);
           }
         },
