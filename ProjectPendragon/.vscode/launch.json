@@ -10,7 +10,8 @@
       "resolveSourceMapLocations": [
           "${workspaceFolder}/**",
           "!**/node_modules/**"
-      ]
+      ],
+      "preLaunchTask": "ng serve"
     }
   ]
 }
