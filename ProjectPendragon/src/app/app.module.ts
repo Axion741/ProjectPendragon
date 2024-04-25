@@ -28,6 +28,7 @@ import { UploadDialogComponent } from './components/modals/upload-dialog/upload-
 import { PortraitComponent } from './components/characters/portrait/portrait.component';
 import { AuthModule } from '@auth0/auth0-angular';
 import { UserProfileComponent } from './components/auth/user-profile/user-profile.component';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -55,8 +56,8 @@ import { UserProfileComponent } from './components/auth/user-profile/user-profil
   ],
   imports: [
     AuthModule.forRoot({
-      domain: '***REMOVED***',
-      clientId: '***REMOVED***',
+      domain: environment.auth0Domain,
+      clientId: environment.auth0ClientId,
       authorizationParams: {
         redirect_uri: window.location.origin
       }
