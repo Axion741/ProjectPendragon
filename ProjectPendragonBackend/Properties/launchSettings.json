@@ -12,9 +12,6 @@
     "ProjectPendragonBackend": {
       "commandName": "Project",
       "launchUrl": "swagger",
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      },
       "applicationUrl": "https://localhost:7202;http://localhost:5202",
       "dotnetRunMessages": true
     },
@@ -22,9 +19,6 @@
       "commandName": "IISExpress",
       "launchBrowser": true,
       "launchUrl": "swagger",
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      }
     }
   }
 }
