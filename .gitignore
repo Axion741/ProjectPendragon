@@ -40,3 +40,6 @@ obj/
 /wwwroot/node_modules
 ProjectPendragonBackend/wwwroot/Uploads/Images/
 ProjectPendragonBackend/Secure/
+
+environment.ts
+environment.prod.ts
