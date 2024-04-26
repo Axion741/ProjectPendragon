@@ -4,14 +4,21 @@
     {
       "type": "chrome",
       "request": "launch",
-      "name": "localhost (Chrome)",
+      "name": "Serve and Launch (Chrome)",
       "url": "http://localhost:4200",
       "webRoot": "${workspaceFolder}",
       "resolveSourceMapLocations": [
           "${workspaceFolder}/**",
           "!**/node_modules/**"
       ],
-      "preLaunchTask": "ng serve"
+      "preLaunchTask": "serve-angular",
+      "postDebugTask": "terminate-all-tasks"
+    },
+    {
+      "command": "ng serve",
+      "name": "Run ng serve",
+      "request": "launch",
+      "type": "node-terminal"
     }
   ]
 }

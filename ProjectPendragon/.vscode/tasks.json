@@ -3,6 +3,31 @@
   "version": "2.0.0",
   "tasks": [
     {
+      "label": "serve-angular",
+      "type": "npm",
+      "script": "serve",
+      "isBackground": true,
+      "problemMatcher": {
+        "owner": "typescript",
+        "pattern": "$tsc",
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": {
+            "regexp": "(.*?)"
+          },
+          "endsPattern": {
+            "regexp": "bundle generation complete"
+          }
+        }
+      }
+    },
+    {
+      "label": "terminate-all-tasks",
+      "command": "echo ${input:terminate}",
+      "type": "shell",
+      "problemMatcher": []
+    },
+    {
       "type": "npm",
       "script": "start",
       "isBackground": true,
@@ -38,10 +63,13 @@
         }
       }
     },
+  ],
+  "inputs": [
     {
-      "label": "ng serve",
-      "type": "shell",
-      "command": "ng serve"
+      "id": "terminate",
+      "type": "command",
+      "command": "workbench.action.tasks.terminate",
+      "args": "terminateAll"
     }
   ]
 }
